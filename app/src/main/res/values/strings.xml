@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Sencerity</string>
+    <string name="usernameHint">Username</string>
+    <string name="passwordHint">Password</string>
+    <string name="loginButton">Login</string>
+    <string name="welcome">Welcome!</string>
+    <string name="loggedIn">Successful Login.</string>
+    <string name="logOut">Log Out</string>
+    <string name="sleep">Sleep</string>
+    <string name="dressing">Dressing</string>
+    <string name="continence">Continence</string>
+    <string name="hygiene">Hygiene</string>
+    <string name="mobility">Mobility</string>
+    <string name="Food">Food</string>
+    <string name="textSample">textViewSample</string>
+
+</resources>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainMenu">
+
+    <Button
+        android:id="@+id/continenceButton"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="120dp"
+        android:onClick="onClick"
+        android:text="@string/continence"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mobilityButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/hygieneButton" />
+
+    <Button
+        android:id="@+id/mobilityButton"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="120dp"
+        android:onClick="onClick"
+        android:text="@string/mobility"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/continenceButton"
+        app:layout_constraintTop_toBottomOf="@+id/dressingButton" />
+
+    <Button
+        android:id="@+id/dressingButton"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginRight="36dp"
+        android:layout_marginBottom="55dp"
+        android:onClick="onClick"
+        android:text="@string/dressing"
+        app:layout_constraintBottom_toTopOf="@+id/mobilityButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/hygieneButton"
+        app:layout_constraintTop_toBottomOf="@+id/sleepButton" />
+
+    <Button
+        android:id="@+id/hygieneButton"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="45dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="55dp"
+        android:onClick="onClick"
+        android:text="@string/hygiene"
+        app:layout_constraintBottom_toTopOf="@+id/continenceButton"
+        app:layout_constraintEnd_toStartOf="@+id/dressingButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodButton" />
+
+    <Button
+        android:id="@+id/foodButton"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginRight="25dp"
+        android:layout_marginBottom="45dp"
+        android:onClick="onClick"
+        android:text="@string/Food"
+        app:layout_constraintBottom_toTopOf="@+id/hygieneButton"
+        app:layout_constraintEnd_toStartOf="@+id/sleepButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/sleepButton"
+        android:layout_width="140dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginLeft="25dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginEnd="40dp"
+        android:layout_marginRight="40dp"
+        android:layout_marginBottom="45dp"
+        android:onClick="onClick"
+        android:text="@string/sleep"
+        app:layout_constraintBottom_toTopOf="@+id/dressingButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/foodButton"
+        app:layout_constraintTop_toTopOf="parent" />
+</android.support.constraint.ConstraintLayout>
