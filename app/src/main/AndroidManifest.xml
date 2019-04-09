@@ -16,7 +16,6 @@
         <activity android:name=".ContinenceActivity" />
         <activity android:name=".HygieneActivity" />
         <activity android:name=".DressingActivity" />
-        <activity android:name=".ListViewTest" />
         <activity android:name=".MainMenu" />
         <activity android:name=".LoggedIn" />
         <activity android:name=".SignIn">
