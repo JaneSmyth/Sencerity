@@ -5,14 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewHolder>{
 
-    SleepActivity sleepActivity;
-    ArrayList<SleepDataModel> sleepDataArrayList;
+    private SleepActivity sleepActivity;
+    private ArrayList<SleepDataModel> sleepDataArrayList;
 
     public RecyclerViewAdapter(SleepActivity sleepActivity, ArrayList<SleepDataModel> sleepDataArrayList) {
         this.sleepActivity = sleepActivity;
