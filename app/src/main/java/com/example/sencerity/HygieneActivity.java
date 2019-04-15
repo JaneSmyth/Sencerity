@@ -26,7 +26,6 @@ public class HygieneActivity extends AppCompatActivity {
     private FirebaseUser currentUser;
     private String userId;
     private TextView displayData;
-    // private static final String KEY = "dateTime";
     CollectionReference userCollection;
     DocumentReference userDocument;
     ;

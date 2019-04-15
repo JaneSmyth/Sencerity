@@ -4,16 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".DressingActivity">
+    tools:context=".PatientOption">
+
+    <Spinner
+        android:id="@+id/spinnerItem"
+        android:layout_width="395dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="233dp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="233dp"
+        android:spinnerMode="dropdown" />
 
     <TextView
-        android:id="@+id/dataTextView"
+        android:id="@+id/TestingText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="TextView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="279dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="279dp" />
+        tools:layout_editor_absoluteY="337dp" />
 </android.support.constraint.ConstraintLayout>

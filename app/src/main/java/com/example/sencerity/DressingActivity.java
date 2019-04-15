@@ -65,7 +65,9 @@ public class DressingActivity extends AppCompatActivity {
                                 displayData.append(SENSOR + " : "+ document.get("sensor").toString());
                                 displayData.append("\n\n");
 
-                                Log.d(TAG, document.getId() + " => " + document.getData());                            }
+                                Log.d(TAG, document.getId() + " => " + document.getData());
+
+                            }
                         } else{
                             displayData.append("Error getting documents");}
                     }

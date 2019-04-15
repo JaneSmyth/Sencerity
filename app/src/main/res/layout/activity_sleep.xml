@@ -7,22 +7,22 @@
     tools:context=".SleepActivity"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/textViewGr"
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="174dp"
-        android:gravity="center"
-        android:text="*Graph goes here*"
-        android:textAlignment="center"
-        android:textSize="24sp"
-        android:textStyle="bold"
+        android:layout_height="wrap_content">
 
-        />
+        <com.github.mikephil.charting.charts.PieChart
+            android:id="@+id/sleepPieChart"
+            android:layout_width="match_parent"
+            android:layout_height="205dp" />
+        <!-- android:gravity="center" -->
+
+    </RelativeLayout>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
         android:layout_width="match_parent"
-        android:layout_height="560dp"
+        android:layout_height="wrap_content"
         android:layout_gravity="bottom" />
 
 
