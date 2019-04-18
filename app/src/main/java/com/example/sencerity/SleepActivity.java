@@ -19,6 +19,7 @@ import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -29,6 +30,12 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
+
+import adapter.SleepAdapter;
+import models.Header;
+import models.NormalRow;
+import models.RecyclerViewItem;
 
 public class SleepActivity extends AppCompatActivity {
 
@@ -36,14 +43,17 @@ public class SleepActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private FirebaseUser currentUser;
     private String userId;
-    private ArrayList<SleepDataModel> sleepArrayList;
-    private RecyclerViewAdapter adapter;
+   private ArrayList<RecyclerViewItem> recyclerViewItems;
+   // private List<RecyclerViewItem> sleepArrayList;
+    private SleepAdapter adapter;
     private Date timestampToDate;
     private PieChart pieChart;
     private long timeElapsed;
     private float timeElap;
     private float timeLeft;
     private float totalTime;
+    private int increment;
+    String dayDate;
 
 
 
@@ -51,19 +61,20 @@ public class SleepActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep);
-
-        sleepArrayList = new ArrayList<>();
+        increment =0;
+        recyclerViewItems = new ArrayList<>();
         setUpRecyclerView();
         setUpFirebase();
         loadDataFromFirebase();
-        Time();
-        DrawPie();
+       // Time();
+       // DrawPie();
 
     }
 
     private void loadDataFromFirebase() {
-        if (sleepArrayList.size() > 0)
-            sleepArrayList.clear();
+
+        if (recyclerViewItems.size() > 0)
+            recyclerViewItems.clear();
 
         db.collection("users").document(userId).collection("sleep")
                 .get()
@@ -71,15 +82,18 @@ public class SleepActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
                         for(DocumentSnapshot querySnapshot: task.getResult()){
-
+                            increment++;
+                            String s="hello "+increment;
                             timestampToDate = querySnapshot.getTimestamp("dateTime").toDate();
-
-                          SleepDataModel sleepDataM = new SleepDataModel(timestampToDate,querySnapshot.getString("sensor"),
+                            Header header = new Header(s);
+                            recyclerViewItems.add(header);
+                            NormalRow normalRow = new NormalRow(timestampToDate,querySnapshot.getString("sensor"),
                                    querySnapshot.getString("patientId"));
-                            sleepArrayList.add(sleepDataM);
+                             recyclerViewItems.add(normalRow);
 
                         }
-                        adapter = new RecyclerViewAdapter (SleepActivity.this, sleepArrayList);
+                        adapter = new SleepAdapter (SleepActivity.this, recyclerViewItems);
+
                         mRecyclerView.setAdapter(adapter);
 
                     }
@@ -135,6 +149,21 @@ public class SleepActivity extends AppCompatActivity {
         pieChart.setData(pData);
 
        // data.setValueFormatter(new DefaultValueFormatter(0));
+
+    }
+    private void headerDates(Timestamp timestamp){
+
+        if(dayDate == null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy ");
+            dayDate = sdf.format(timestamp);
+        }
+        else{
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy ");
+            String dayDate2 = sdf.format(timestamp);
+            //Continue from here !!!!!!!
+        }
+
+
 
     }
 
