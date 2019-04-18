@@ -32,15 +32,20 @@ import java.util.Date;
 
 public class SleepActivity extends AppCompatActivity {
 
-    FirebaseFirestore db;
-    RecyclerView mRecyclerView;
-    FirebaseUser currentUser;
-    String userId;
-    ArrayList<SleepDataModel> sleepArrayList;
-    RecyclerViewAdapter adapter;
-    Date timestampToDate;
-    PieChart pieChart;
-    long timeElapsed;
+    private FirebaseFirestore db;
+    private RecyclerView mRecyclerView;
+    private FirebaseUser currentUser;
+    private String userId;
+    private ArrayList<SleepDataModel> sleepArrayList;
+    private RecyclerViewAdapter adapter;
+    private Date timestampToDate;
+    private PieChart pieChart;
+    private long timeElapsed;
+    private float timeElap;
+    private float timeLeft;
+    private float totalTime;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState){
@@ -48,26 +53,12 @@ public class SleepActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sleep);
 
         sleepArrayList = new ArrayList<>();
-        //setUpRecyclerView();
-       // setUpFirebase();
-        //loadDataFromFirebase();
-       // Time();
+        setUpRecyclerView();
+        setUpFirebase();
+        loadDataFromFirebase();
+        Time();
         DrawPie();
-      /*  ArrayList<PieEntry> values = new ArrayList<>();
-        pieChart = findViewById(R.id.sleepPieChart);
-        pieChart.setUsePercentValues(true);
-        values.add(new PieEntry(45,"A"));
-        values.add(new PieEntry(45,"B"));
-        values.add(new PieEntry(45,"C"));
-        values.add(new PieEntry(45,"D"));
-        values.add(new PieEntry(45,"E"));
-        values.add(new PieEntry(45,"F"));
-        PieDataSet pDataSet= new PieDataSet(values, "letters");
-        PieData pData = new PieData(pDataSet);
-        pDataSet.setColors(ColorTemplate.COLORFUL_COLORS);
-        pieChart.setData(pData);
-        //pieChart.animateXY(5000, 5000);
-        */
+
     }
 
     private void loadDataFromFirebase() {
@@ -119,22 +110,16 @@ public class SleepActivity extends AppCompatActivity {
     private void Time(){
         long t2 = 1548579660L; //seconds
         long t1 = 1548535800L; //seconds
-         timeElapsed = t2-t1;
-        //86,400 seconds in 24hr
-
-
+        timeElapsed = t2-t1;
+        timeElap = timeElapsed;
+        totalTime = (float)86400L;//86,400 seconds in 24hr
+        timeLeft = totalTime- timeElap;
 
 
     }
 
     private void DrawPie(){
         pieChart = findViewById(R.id.sleepPieChart);
-        long t2 = 1548579660L; //seconds
-        long t1 = 1548535800L; //seconds
-        timeElapsed = t2-t1;
-        float timeElap = timeElapsed;
-        float totalTime = (float)86400L;
-        float timeLeft = totalTime- timeElap;
         ArrayList<PieEntry> yvalues = new ArrayList<>();
 
         yvalues.add(new PieEntry(timeElap, "sleep"));
@@ -146,7 +131,7 @@ public class SleepActivity extends AppCompatActivity {
         pDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
        // pData.setValueFormatter(new DefaultValueFormatter(0));
         pieChart.setUsePercentValues(true);
-        pieChart.setDrawHoleEnabled(false);
+        pieChart.setDrawHoleEnabled(true);
         pieChart.setData(pData);
 
        // data.setValueFormatter(new DefaultValueFormatter(0));

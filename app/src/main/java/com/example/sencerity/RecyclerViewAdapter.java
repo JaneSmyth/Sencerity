@@ -5,9 +5,12 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
+
 import java.util.ArrayList;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewHolder>{
+
 
     private SleepActivity sleepActivity;
     private ArrayList<SleepDataModel> sleepDataArrayList;
@@ -19,15 +22,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewHold
 
     @NonNull
     @Override
-    public MyRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-
+    public MyRecyclerViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
 
         LayoutInflater layoutInflater = LayoutInflater.from(sleepActivity.getBaseContext());
         View view= layoutInflater.inflate(R.layout.single_row, viewGroup, false);
         return new MyRecyclerViewHolder(view);
+
+
     }
 
-    @Override
+   @Override
     public void onBindViewHolder(@NonNull MyRecyclerViewHolder holder, int i) {
 
 
@@ -35,10 +39,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewHold
         holder.mSensor.setText(sleepDataArrayList.get(i).getSensor());
         holder.mPatient.setText(sleepDataArrayList.get(i).getPatientId());
 
+
     }
 
     @Override
     public int getItemCount() {
         return sleepDataArrayList.size();
     }
+
 }
