@@ -20,6 +20,8 @@ import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
+import utils.testerClass;
+
 
 public class PatientOption extends AppCompatActivity {
 
@@ -37,7 +39,6 @@ public class PatientOption extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_patient_option);
 
-        textview = findViewById(R.id.TestingText);
         spinner = new Spinner(this);
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
@@ -79,5 +80,7 @@ public class PatientOption extends AppCompatActivity {
             adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
             s.setAdapter(adapter);
         }
+
     }
+
 }

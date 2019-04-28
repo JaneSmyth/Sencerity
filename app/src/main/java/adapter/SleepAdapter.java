@@ -16,6 +16,7 @@ import java.util.List;
 import models.Header;
 import models.NormalRow;
 import models.RecyclerViewItem;
+import utils.DateTimes;
 
 public class SleepAdapter extends RecyclerView.Adapter{
 
@@ -70,7 +71,8 @@ public class SleepAdapter extends RecyclerView.Adapter{
             NormalViewHolder normalHolder=(NormalViewHolder)holder;
             NormalRow normalRow = (NormalRow)recyclerItem;
 
-            normalHolder.mDateTime.setText(normalRow.getDateTimeFormatted());
+            //normalHolder.mDateTime.setText(normalRow.getLocalDateTime());
+            normalHolder.mDateTime.setText(normalRow.calculateDuration());
             normalHolder.mSensor.setText(normalRow.getSensor());
             normalHolder.mPatient.setText(normalRow.getPatientId());
         }
@@ -117,4 +119,13 @@ public class SleepAdapter extends RecyclerView.Adapter{
 
         }
     }
+    public class DateViewHolder extends RecyclerView.ViewHolder{
+        public TextView textViewHeader;
+
+        public DateViewHolder(View itemView){
+            super(itemView);
+            textViewHeader=itemView.findViewById(R.id.textViewDateTime);
+        }
+    }
+
 }

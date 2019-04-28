@@ -24,13 +24,21 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.text.SimpleDateFormat;
+import java.time.Clock;
+import java.time.Duration;
+import java.time.Instant;
+import java.time.LocalDateTime;
+
+import java.time.MonthDay;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+
 
 import adapter.SleepAdapter;
 import models.Header;
@@ -43,7 +51,8 @@ public class SleepActivity extends AppCompatActivity {
     private RecyclerView mRecyclerView;
     private FirebaseUser currentUser;
     private String userId;
-   private ArrayList<RecyclerViewItem> recyclerViewItems;
+    private ArrayList<RecyclerViewItem> recyclerViewItems;
+    public ArrayList<Date> dateList;
    // private List<RecyclerViewItem> sleepArrayList;
     private SleepAdapter adapter;
     private Date timestampToDate;
@@ -54,6 +63,7 @@ public class SleepActivity extends AppCompatActivity {
     private float totalTime;
     private int increment;
     String dayDate;
+    int index;
 
 
 
@@ -61,11 +71,16 @@ public class SleepActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState){
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep);
-        increment =0;
+        index =0;
         recyclerViewItems = new ArrayList<>();
         setUpRecyclerView();
         setUpFirebase();
         loadDataFromFirebase();
+        for(Object i: recyclerViewItems)
+        {
+            System.out.println(i);
+            System.out.println("===========");
+        }
        // Time();
        // DrawPie();
 
@@ -73,22 +88,25 @@ public class SleepActivity extends AppCompatActivity {
 
     private void loadDataFromFirebase() {
 
-        if (recyclerViewItems.size() > 0)
-            recyclerViewItems.clear();
+       // if (recyclerViewItems.size() > 0)
+        //    recyclerViewItems.clear();
 
         db.collection("users").document(userId).collection("sleep")
+                .orderBy("dateTime", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+
                         for(DocumentSnapshot querySnapshot: task.getResult()){
-                            increment++;
+
                             String s="hello "+increment;
                             timestampToDate = querySnapshot.getTimestamp("dateTime").toDate();
                             Header header = new Header(s);
                             recyclerViewItems.add(header);
                             NormalRow normalRow = new NormalRow(timestampToDate,querySnapshot.getString("sensor"),
                                    querySnapshot.getString("patientId"));
+
                              recyclerViewItems.add(normalRow);
 
                         }
@@ -113,6 +131,9 @@ public class SleepActivity extends AppCompatActivity {
         if (currentUser != null) {
             userId = currentUser.getUid();
         }
+        else{
+            userId = "kM2gyYrk5MeLlLFKoZdNOViGwJI2";
+        }
     }
 
     private void setUpRecyclerView() {
@@ -128,7 +149,6 @@ public class SleepActivity extends AppCompatActivity {
         timeElap = timeElapsed;
         totalTime = (float)86400L;//86,400 seconds in 24hr
         timeLeft = totalTime- timeElap;
-
 
     }
 
@@ -151,8 +171,18 @@ public class SleepActivity extends AppCompatActivity {
        // data.setValueFormatter(new DefaultValueFormatter(0));
 
     }
-    private void headerDates(Timestamp timestamp){
+    private void headerDates(LocalDateTime dateTime,int i){
 
+        if(!(dateList.get(i) == dateList.get(i - 1)) |i==0 ) {
+            //so if the dates are not the same or its the first date
+            Header header = new Header(dateTime.toString());
+            recyclerViewItems.add(header);
+        }
+        else{
+            //no header
+        }
+
+        /*
         if(dayDate == null) {
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy ");
             dayDate = sdf.format(timestamp);
@@ -162,7 +192,7 @@ public class SleepActivity extends AppCompatActivity {
             String dayDate2 = sdf.format(timestamp);
             //Continue from here !!!!!!!
         }
-
+        */
 
 
     }

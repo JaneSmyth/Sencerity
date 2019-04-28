@@ -3,6 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.sencerity">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -10,22 +15,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PatientOption"></activity>
+        <activity android:name=".MainMenu"></activity>
+        <activity android:name=".PatientOption" />
         <activity android:name=".SleepActivity" />
         <activity android:name=".MobilityActivity" />
         <activity android:name=".FoodActivity" />
         <activity android:name=".ContinenceActivity" />
         <activity android:name=".HygieneActivity" />
         <activity android:name=".DressingActivity" />
-        <activity android:name=".MainMenu" />
+        <activity android:name=".SignIn" />
         <activity android:name=".LoggedIn" />
-        <activity android:name=".SignIn">
+        <activity android:name=".BarcodeScannerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <meta-data
+            android:name="com.google.firebase.ml.vision.DEPENDENCIES"
+            android:value="barcode" />
+
+
     </application>
 
 </manifest>

@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -15,17 +16,25 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.ml.vision.FirebaseVision;
+import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcode;
+import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector;
+import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetectorOptions;
+
+import java.io.IOException;
+import java.util.List;
 
 public class FoodActivity extends AppCompatActivity {
 
 
-    private static final String TAG = "docData";
+    private static final String TAG = "DocData";
     private static final String DATETIME="Date and Time";
     private static final String SENSOR="Sensor";
     private FirebaseFirestore db;
     private FirebaseUser currentUser;
     private String userId;
     private TextView displayData;
+    private FirebaseVisionBarcodeDetector detector;
     // private static final String KEY = "dateTime";
     CollectionReference userCollection;
     DocumentReference userDocument;
@@ -71,6 +80,5 @@ public class FoodActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
 }
