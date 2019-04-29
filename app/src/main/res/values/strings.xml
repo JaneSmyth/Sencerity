@@ -13,5 +13,7 @@
     <string name="mobility">Mobility</string>
     <string name="Food">Food</string>
     <string name="textSample">textViewSample</string>
+    <string name="scanBarcode">Scan Barcode</string>
+
 
 </resources>

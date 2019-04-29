@@ -5,4 +5,10 @@
     <color name="colorAccent">#D81B60</color>
     <color name="black">#000000</color>
     <color name="ivory">#fffff0</color>
+    <color name="silver_pink">#D0ADA7</color>
+    <color name="silver_pink_50percOpacity">#99D0ADA7</color>
+    <color name="copper_penny">#AD6A6C</color>
+    <color name="flax">#E0D68A</color>
+    <color name="illuminating_emerald">#419D78</color>
+    <color name="cream">#F0FFCE</color>
 </resources>
