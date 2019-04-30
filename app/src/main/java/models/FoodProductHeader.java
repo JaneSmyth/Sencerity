@@ -1,12 +1,12 @@
 package models;
 
-public class foodProductItem {
+public class FoodProductHeader {
 
     private String barcodeNum;
     private String productName;
     private String brandName;
 
-    public foodProductItem(String productName,String brandName,String barcodeNum){
+    public FoodProductHeader(String productName, String brandName, String barcodeNum){
         this.barcodeNum=barcodeNum;
         this.brandName=brandName;
         this.productName=productName;

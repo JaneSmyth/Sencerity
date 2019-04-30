@@ -1,41 +1,41 @@
-<?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="25dp"
-    tools:context=".FoodActivity">
+    android:layout_width="match_parent"
+    android:padding="16dp">
+
 
     <TextView
-        android:id="@+id/barcodeInfoTextView"
-        android:text="@string/textSample"
+        android:id="@+id/textViewNutritionalInfo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="25dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginLeft="25dp"
-        android:layout_marginStart="25dp"
+        android:layout_height="350dp"
+        android:text="graph of daily/weekly/monthly calories etc that the elder has eaten"
+        android:textAlignment="center"
+        android:textAllCaps="true"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@id/barcodeScanButton"
         app:layout_constraintEnd_toEndOf="parent"
-        android:layout_marginEnd="25dp"
-        android:layout_marginRight="25dp"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="16dp"
+        android:background="@color/silver_pink_50percOpacity"/>
 
     <Button
         android:id="@+id/barcodeScanButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"
+        android:layout_margin="40dp"
+        android:layout_marginTop="132dp"
+        android:layout_marginBottom="277dp"
         android:onClick="scanBarcode"
         android:text="@string/scanBarcode"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textViewNutritionalInfo" />
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
-</android.support.constraint.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,10 +1,10 @@
 package models;
 //recycler view header item
 
-public class Header extends RecyclerViewItem{
+public class SleepHeader extends RecyclerViewItem{
     private String HeaderText;
 
-    public Header(String headerText) {
+    public SleepHeader(String headerText) {
         HeaderText = headerText;
     }
 

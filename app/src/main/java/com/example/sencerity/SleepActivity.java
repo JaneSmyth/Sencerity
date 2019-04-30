@@ -2,24 +2,21 @@ package com.example.sencerity;
 
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import android.util.Log;
 import android.widget.Toast;
 
 import com.github.mikephil.charting.charts.PieChart;
-import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
-import com.github.mikephil.charting.formatter.DefaultValueFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
-import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -27,21 +24,14 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
-import java.text.SimpleDateFormat;
-import java.time.Clock;
-import java.time.Duration;
-import java.time.Instant;
 import java.time.LocalDateTime;
 
-import java.time.MonthDay;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
-import java.util.List;
 
 
 import adapter.SleepAdapter;
-import models.Header;
+import models.SleepHeader;
 import models.NormalRow;
 import models.RecyclerViewItem;
 
@@ -102,7 +92,7 @@ public class SleepActivity extends AppCompatActivity {
 
                             String s="hello "+increment;
                             timestampToDate = querySnapshot.getTimestamp("dateTime").toDate();
-                            Header header = new Header(s);
+                            SleepHeader header = new SleepHeader(s);
                             recyclerViewItems.add(header);
                             NormalRow normalRow = new NormalRow(timestampToDate,querySnapshot.getString("sensor"),
                                    querySnapshot.getString("patientId"));
@@ -175,7 +165,7 @@ public class SleepActivity extends AppCompatActivity {
 
         if(!(dateList.get(i) == dateList.get(i - 1)) |i==0 ) {
             //so if the dates are not the same or its the first date
-            Header header = new Header(dateTime.toString());
+            SleepHeader header = new SleepHeader(dateTime.toString());
             recyclerViewItems.add(header);
         }
         else{

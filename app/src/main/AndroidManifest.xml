@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".BarcodeScannerActivity"></activity>
+        <activity android:name=".NutrionalActivity"></activity>
+        <activity android:name=".BarcodeScannerActivity" />
         <activity android:name=".PatientOption" />
         <activity android:name=".SleepActivity" />
         <activity android:name=".MobilityActivity" />
@@ -36,8 +37,6 @@
         <meta-data
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="barcode" />
-
-
     </application>
 
 </manifest>

@@ -1,8 +1,8 @@
 package adapter;
 
 import android.content.Context;
-import android.support.annotation.NonNull;
-import android.support.v7.widget.RecyclerView;
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,10 +13,9 @@ import com.example.sencerity.R;
 
 import java.util.List;
 
-import models.Header;
+import models.SleepHeader;
 import models.NormalRow;
 import models.RecyclerViewItem;
-import utils.DateTimes;
 
 public class SleepAdapter extends RecyclerView.Adapter{
 
@@ -62,7 +61,7 @@ public class SleepAdapter extends RecyclerView.Adapter{
 
         if(holder instanceof HeaderViewHolder){
             HeaderViewHolder headerHolder=(HeaderViewHolder)holder;
-            Header header=(Header)recyclerItem;
+            SleepHeader header=(SleepHeader)recyclerItem;
             //set data
             headerHolder.textViewHeader.setText(header.getHeaderText());
 
@@ -83,7 +82,7 @@ public class SleepAdapter extends RecyclerView.Adapter{
     public int getItemViewType(int position){
         //set view type
         RecyclerViewItem recyclerViewItem = sleepDataList.get(position);
-        if(recyclerViewItem instanceof Header){
+        if(recyclerViewItem instanceof SleepHeader){
             return HEADER_ITEM;
         }
         else if(recyclerViewItem instanceof NormalRow){

@@ -1,18 +1,15 @@
 package com.example.sencerity;
 
 import android.Manifest;
-import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.support.annotation.NonNull;
-import android.support.v4.app.ActivityCompat;
-import android.support.v7.app.AppCompatActivity;
+
+import androidx.core.app.ActivityCompat;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.api.CommonStatusCodes;
@@ -20,8 +17,6 @@ import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.barcode.Barcode;
 import com.google.android.gms.vision.barcode.BarcodeDetector;
-import com.google.firebase.ml.vision.FirebaseVision;
-import com.google.firebase.ml.vision.barcode.FirebaseVisionBarcodeDetector;
 
 import java.io.IOException;
 
@@ -30,7 +25,7 @@ public class BarcodeScannerActivity extends AppCompatActivity {
     private SurfaceView cameraPreview;
     private BarcodeDetector detector;
     private CameraSource camSource;
-
+    public static Barcode barcodeNum;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,7 +91,9 @@ public class BarcodeScannerActivity extends AppCompatActivity {
                 final SparseArray<Barcode> barcodes = detections.getDetectedItems();
                 if(barcodes.size()>0){
                     Intent intent = new Intent();
-                    intent.putExtra("barcode",barcodes.valueAt(0)); //get latest barcode
+                    barcodeNum = barcodes.valueAt(0);
+                    intent.putExtra("barcode",barcodeNum);//get latest barcode
+                    //intent.putExtra("barcode",barcodes.valueAt(0));//get latest barcode
                     setResult(CommonStatusCodes.SUCCESS,intent);
                     finish();
                 }

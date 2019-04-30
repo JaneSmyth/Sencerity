@@ -1,9 +1,5 @@
 package utils;
 
-import android.graphics.Rect;
-import android.support.v7.widget.RecyclerView;
-import android.view.View;
-
 import java.util.ArrayList;
 import java.util.List;
 
