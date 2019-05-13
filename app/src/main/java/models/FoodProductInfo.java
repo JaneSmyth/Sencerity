@@ -4,18 +4,19 @@ import com.example.sencerity.FoodActivity;
 
 public class FoodProductInfo {
 
-    private String calories;
-    private String totalCarbs;
-    private String sugarCarbs;
-    private String totalFat;
-    private String satFat;
-    private String servingSizeGrams;
-    private String protein;
-    private String salt;
-    private String fibre;
+    private Double calories;
+    private Double totalCarbs;
+    private Double sugarCarbs;
+    private Double totalFat;
+    private Double satFat;
+    private Double servingSizeGrams;
+    private Double protein;
+    private Double salt;
+    private Double fibre;
+    //private Double gradeOverall; i.e. per 100g etc
 
 
-    public FoodProductInfo(String servingSizeGrams, String calories, String protein, String totalCarbs, String sugarCarbs, String totalFat, String satFat, String fibre, String salt) {
+    public FoodProductInfo(Double servingSizeGrams, Double calories, Double protein, Double totalCarbs, Double sugarCarbs, Double totalFat, Double satFat, Double fibre, Double salt) {
         this.servingSizeGrams = servingSizeGrams;
         this.calories = calories;
         this.protein = protein;
@@ -27,76 +28,80 @@ public class FoodProductInfo {
         this.salt=salt;
 
     }
+///////////////////////////////
 
+
+
+    ////////////////////////////////
     public String getCalories() {
-        return calories;
+        return calories.toString();
     }
 
-    public void setCalories(String calories) {
+    public void setCalories(Double calories) {
         this.calories = calories;
     }
 
     public String getTotalCarbs() {
-        return totalCarbs;
+        return totalCarbs.toString();
     }
 
-    public void setTotalCarbs(String totalCarbs) {
+    public void setTotalCarbs(Double totalCarbs) {
         this.totalCarbs = totalCarbs;
     }
 
     public String getSugarCarbs() {
-        return sugarCarbs;
+        return sugarCarbs.toString();
     }
 
-    public void setSugarCarbs(String sugarCarbs) {
+    public void setSugarCarbs(Double sugarCarbs) {
         this.sugarCarbs = sugarCarbs;
     }
 
     public String getTotalFat() {
-        return totalFat;
+        return totalFat.toString();
     }
 
-    public void setTotalFat(String totalFat) {
+    public void setTotalFat(Double totalFat) {
         this.totalFat = totalFat;
     }
 
     public String getSatFat() {
-        return satFat;
+        return satFat.toString();
     }
 
-    public void setSatFat(String satFat) {
+    public void setSatFat(Double satFat) {
         this.satFat = satFat;
     }
 
     public String getServingSizeGrams() {
-        return servingSizeGrams;
+        return servingSizeGrams.toString();
     }
 
-    public void setServingSizeGrams(String servingSizeGrams) {
+    public void setServingSizeGrams(Double servingSizeGrams) {
         this.servingSizeGrams = servingSizeGrams;
     }
 
     public String getProtein() {
-        return protein;
+        return protein.toString();
     }
 
-    public void setProtein(String protein) {
+    public void setProtein(Double protein) {
         this.protein = protein;
     }
 
     public String getSalt() {
-        return salt;
+        return salt.toString();
     }
 
-    public void setSalt(String salt) {
+    public void setSalt(Double salt) {
         this.salt = salt;
     }
 
     public String getFibre() {
-        return fibre;
+        return fibre.toString();
     }
 
-    public void setFibre(String fibre) {
+    public void setFibre(Double fibre) {
         this.fibre = fibre;
     }
 }

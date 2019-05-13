@@ -60,10 +60,10 @@ public class SleepAdapter extends RecyclerView.Adapter{
         RecyclerViewItem recyclerItem= sleepDataList.get(index);
 
         if(holder instanceof HeaderViewHolder){
-            HeaderViewHolder headerHolder=(HeaderViewHolder)holder;
-            SleepHeader header=(SleepHeader)recyclerItem;
+          //  HeaderViewHolder headerHolder=(HeaderViewHolder)holder;
+          //  SleepHeader header=(SleepHeader)recyclerItem;
             //set data
-            headerHolder.textViewHeader.setText(header.getHeaderText());
+           // headerHolder.textViewHeader.setText(header.getHeaderText());
 
         }
         else if(holder instanceof NormalViewHolder){
@@ -71,9 +71,14 @@ public class SleepAdapter extends RecyclerView.Adapter{
             NormalRow normalRow = (NormalRow)recyclerItem;
 
             //normalHolder.mDateTime.setText(normalRow.getLocalDateTime());
+            normalHolder.mDate.setText(normalRow.getDate());
+            normalHolder.mSleepToWakeHrs.setText(normalRow.getSleepingHours());
+            normalHolder.mDuration.setText(normalRow.getTimeAsleep());
+                    /*
             normalHolder.mDateTime.setText(normalRow.calculateDuration());
             normalHolder.mSensor.setText(normalRow.getSensor());
             normalHolder.mPatient.setText(normalRow.getPatientId());
+            */
         }
 
     }
@@ -104,27 +109,24 @@ public class SleepAdapter extends RecyclerView.Adapter{
 
         public HeaderViewHolder(View itemView){
             super(itemView);
-            textViewHeader=itemView.findViewById(R.id.headerTextView);
+           // textViewHeader=itemView.findViewById(R.id.headerTextView);
         }
     }
     public class NormalViewHolder extends RecyclerView.ViewHolder {
-        public TextView mSensor, mPatient, mDateTime;
-
+        public TextView mSleepToWakeHrs, mDuration, mDate;
         public NormalViewHolder(View itemView) {
             super(itemView);
+            mDate = itemView.findViewById(R.id.textViewDate);
+            mDuration = itemView.findViewById(R.id.textViewDuration);
+            mSleepToWakeHrs = itemView.findViewById(R.id.textViewTime);
+
+            /*
             mDateTime = itemView.findViewById(R.id.textViewDateTime);
             mSensor = itemView.findViewById(R.id.textViewSensor);
             mPatient = itemView.findViewById(R.id.textViewPatient);
-
+            */
         }
     }
-    public class DateViewHolder extends RecyclerView.ViewHolder{
-        public TextView textViewHeader;
 
-        public DateViewHolder(View itemView){
-            super(itemView);
-            textViewHeader=itemView.findViewById(R.id.textViewDateTime);
-        }
-    }
 
 }

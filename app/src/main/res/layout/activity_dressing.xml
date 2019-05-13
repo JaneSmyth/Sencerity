@@ -4,16 +4,129 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/dark2"
     tools:context=".DressingActivity">
 
-    <TextView
-        android:id="@+id/dataTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="TextView"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView2"
+        android:layout_width="395dp"
+        android:layout_height="120dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginBottom="20dp"
+        app:cardBackgroundColor="@color/light2"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewWash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="279dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="279dp" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/dressedTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/base"
+            android:textSize="18sp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewWash"
+        android:layout_width="395dp"
+        android:layout_height="114dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="8dp"
+        app:cardBackgroundColor="@color/light2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+        <TextView
+            android:id="@+id/washingTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text=""
+            android:textAlignment="center"
+            android:textColor="@color/base"
+            android:textSize="18sp" />
+    </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/divider2"
+        android:layout_width="395dp"
+        android:layout_height="3dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/myGreyPink"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewWash" />
+
+    <Button
+        android:id="@+id/washReminderBtn"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="28dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/lAccent"
+        android:onClick="onClickReminder"
+        android:text="@string/washReminderBtn"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/dressReminderBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3"
+        app:layout_constraintVertical_bias="0.271" />
+
+    <Button
+        android:id="@+id/dressReminderBtn"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="11dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="8dp"
+        android:background="@color/lAccent"
+        android:onClick="onClickReminder"
+        android:text="@string/dressReminderBtn"
+        android:textColor="@color/light2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/washReminderBtn"
+        app:layout_constraintTop_toBottomOf="@+id/cardView3"
+        app:layout_constraintVertical_bias="0.271" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="44dp"
+        android:layout_marginEnd="5dp"
+        app:cardBackgroundColor="@color/lAccent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider2">
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:text="@string/reminderQs"
+            android:textColor="@color/dark2"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </androidx.cardview.widget.CardView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>

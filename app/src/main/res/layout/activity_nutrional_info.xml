@@ -1,23 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="25dp"
-    tools:context=".FoodActivity">
+    android:padding="10dp"
+    tools:context=".NutritionalActivity">
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewHeader"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp">
+        android:layout_alignParentTop="true">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="10dp">
 
             <TextView
                 android:id="@+id/productNameTextView"
@@ -34,16 +35,20 @@
             <TextView
                 android:id="@+id/barcodeNumTextView"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewInfo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp">
+        android:layout_above="@id/addFoodAsk"
+        android:layout_below="@id/cardViewHeader"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="-3dp"
+        android:layout_marginBottom="3dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -53,7 +58,6 @@
                 android:id="@+id/textViewServHeading"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
                 android:text="@string/serving"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="20sp"
@@ -70,7 +74,6 @@
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
                 android:textSize="18sp"
-                android:textStyle="bold"
                 app:layout_constraintBottom_toTopOf="@id/foodDataLinearLayout"
                 app:layout_constraintLeft_toRightOf="@id/textViewServHeading"
                 app:layout_constraintRight_toRightOf="parent"
@@ -80,13 +83,12 @@
                 android:id="@+id/titleLinearLayout"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/foodDataLinearLayout"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/textViewServHeading"
-                android:layout_marginTop="15dp"
-               >
+                app:layout_constraintTop_toBottomOf="@id/textViewServHeading">
 
                 <TextView
                     android:id="@+id/textView4"
@@ -159,12 +161,12 @@
                 android:id="@+id/foodDataLinearLayout"
                 android:layout_width="125dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/titleLinearLayout"
-                app:layout_constraintTop_toBottomOf="@id/servingSizeTextView"
-                android:layout_marginTop="15dp">
+                app:layout_constraintTop_toBottomOf="@id/servingSizeTextView">
 
                 <TextView
                     android:id="@+id/kcalsTextView"
@@ -236,6 +238,23 @@
 
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/addFoodAsk"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/foodAsk"
+        android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
+        android:layout_above="@id/FoodButton"
+        />
+
+    <Button
+        android:id="@+id/FoodButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:onClick="onClickAddFood"
+        android:text="@string/addFood"
+        android:layout_alignParentBottom="true"/>
 
 
-</LinearLayout>
+</RelativeLayout>

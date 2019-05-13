@@ -24,38 +24,84 @@ import java.util.concurrent.TimeUnit;
 import static java.util.concurrent.TimeUnit.*;
 
 @IgnoreExtraProperties
-public class NormalRow extends RecyclerViewItem{
+public class NormalRow extends RecyclerViewItem {
+    /*
+        private String sensor;
+        private String patientId;
+        private Date dateTime;
+        private String datePattern;
+        private DateTimeFormatter dtf;
+        private LocalDateTime localDateTime;
+        private String formattedLocalDateTime;
+        private LocalDateTime now = LocalDateTime.now();
+        private Duration duration;
+        private Long durationInSecs;
+        private String format;
+        private int index;
+        private List<LocalDateTime> datesList = new ArrayList<>();
+     */
+    String date;
+    String timeAsleep;
+    String sleepingHours;
 
-    private String sensor;
-    private String patientId;
-    private Date dateTime;
-    private String datePattern;
-    private DateTimeFormatter dtf;
-    private LocalDateTime localDateTime;
-    private String formattedLocalDateTime;
-    private LocalDateTime now = LocalDateTime.now();
-    private Duration duration;
-    private Long durationInSecs;
-    private String format;
-    private int index;
-    private List<LocalDateTime> datesList = new ArrayList<>();
 
-    public NormalRow(Date dateTime, String sensor, String patientId) {
-        this.dateTime = dateTime;
-        this.sensor = sensor;
-        this.patientId = patientId;
-        setLocalDateTime(dateTime);
-
+    public NormalRow(String date, String timeAsleep, String sleepingHours) {
+        this.date = date;
+        this.timeAsleep = timeAsleep;
+        this.sleepingHours = sleepingHours;
 
 
     }
 
-    public Date getDateTime() {
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTimeAsleep() {
+        return timeAsleep;
+    }
+
+    public void setTimeAsleep(String timeAsleep) {
+        this.timeAsleep = timeAsleep;
+    }
+
+    public String getSleepingHours() {
+        return sleepingHours;
+    }
+
+    public void setSleepingHours(String sleepingHours) {
+        this.sleepingHours = sleepingHours;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+    public Date getDateLong() {
         return dateTime;
     }
 
 
-    public void setDateTime(Date dateTime) {
+    public void setDateLong(Date dateTime) {
         this.dateTime = dateTime;
     }
 
@@ -81,14 +127,15 @@ public class NormalRow extends RecyclerViewItem{
         datesList.add(index,localDateTime);
     }
     public LocalDateTime getLocalDateTime(){
-       /* datePattern = "EEE, dd MMM yy. HH:mm";
+        datePattern = "EEE, dd MMM yy. HH:mm";
         dtf = DateTimeFormatter.ofPattern(datePattern);
         localDateTime = LocalDateTime.ofInstant(dateTime.toInstant(), ZoneId.systemDefault());
         formattedLocalDateTime=localDateTime.format(dtf);
-        */
-        return localDateTime;
+
+        //return localDateTime;
     }
-    @SuppressLint("DefaultLocale")
+    */
+/*
     public String calculateDuration() {
         if (datesList.size() < 2) {
             format = "emptyArray";
@@ -104,23 +151,24 @@ public class NormalRow extends RecyclerViewItem{
             return format;
 
     }
+
+
     public String formattedDuration(){
-       // LocalTime localTime = LocalTime.from(d)
-        //LocalTime localTime = durationInSecs;
-        //String dateInString = "Mon, 05 May 1980";
-        /*
+        LocalTime localTime = LocalTime.from(d)
+        LocalTime localTime = durationInSecs;
+        String dateInString = "Mon, 05 May 1980";
+
         String str =String.valueOf(duration.getSeconds());
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm");
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("Hh:mm");
         LocalDateTime result = LocalDateTime.parse(str, formatter);
-        */
-        /*
+
         LocalDateTime durationLdt = LocalDateTime.ofInstant(date1.toInstant(),ZoneId.systemDefault());
         String durationPattern="HH:mm";
         dtf = DateTimeFormatter.ofPattern(durationPattern);
         String formattedDuration= dtf.format(durationLdt);
-        */
+
         //String string = date1.toString();
         return null;
     }
-
-}
+ }
+*/

@@ -18,9 +18,7 @@ public class testerClass {
         list.add("gat");
         list.add("Banaaefasdna");
 
-        for(Object i: list){
-            System.out.println(i + "   ");
-        }
+
 
 
     }

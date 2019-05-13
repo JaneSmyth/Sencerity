@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".AddFoodToDiary">
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewHeader"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="30dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        >
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/productNameTextView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+
+            <TextView
+                android:id="@+id/brandTextView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+            <TextView
+                android:id="@+id/barcodeNumTextView2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:id="@+id/titleLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="250dp"
+        android:layout_marginTop="10dp"
+        android:gravity="left"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/addFoodToDiaryBtn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@id/textLinearLayout"
+        app:layout_constraintTop_toBottomOf="@id/cardViewHeader"
+        app:layout_constraintVertical_weight="1">
+
+        <TextView
+            android:id="@+id/calsOfEnteredServTextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+
+            android:text="@string/caloriesPerServingEntered"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/userServingTextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+
+            android:text="@string/servingSizeByUser"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+
+        <TextView
+            android:id="@+id/mealTypeTextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:textAlignment="center"
+
+            android:text="@string/mealType"
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/textLinearLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@id/addFoodToDiaryBtn"
+        app:layout_constraintLeft_toRightOf="@id/titleLinearLayout"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/cardViewHeader"
+        app:layout_constraintVertical_weight="1">
+
+        <TextView
+            android:id="@+id/calculatedCalsPerServ"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="12"
+            android:textAlignment="center"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/servInputEditTextView"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:hint="@string/servHint"
+            android:importantForAutofill="no"
+            android:inputType="numberDecimal"
+            android:textAlignment="center"
+            android:layout_weight="1"/>
+
+        <Spinner
+            android:id="@+id/spinnerFood"
+            style="@android:style/Widget.Material.Light.Spinner.Underlined"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:entries="@array/mealTimeArray"
+            android:gravity="center"
+            android:spinnerMode="dropdown"
+            android:textAlignment="center"
+            android:layout_weight="1"/>
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/addFoodToDiaryBtn"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:layout_marginBottom="60dp"
+        android:onClick="onClickConfirmFoodAdd"
+        android:text="@string/addFood"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

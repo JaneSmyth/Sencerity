@@ -12,9 +12,10 @@
     <string name="hygiene">Hygiene</string>
     <string name="mobility">Mobility</string>
     <string name="Food">Food</string>
-    <string name="textSample">textViewSample</string>
-    <string name="scanBarcode">Scan Barcode</string>
 
+    <string name="textSample">textViewSample</string>
+
+    <string name="scanBarcode">Scan Barcode</string>
     <string name="serving">Nutritional Information for </string>
     <string name="cals">Calories</string>
     <string name="protein">Protein</string>
@@ -24,8 +25,30 @@
     <string name="sugar">of which Sugars</string>
     <string name="fibre">Fibre</string>
     <string name="salt">Salt</string>
+    <string name="foodAsk">Would you like to add this food to your daily food intake?</string>
+    <string name="addFood">Add Food</string>
+    <string name="servingSizeByUser">Serving Size (g)</string>
+    <string name="caloriesPerServingEntered">Calories in this Serving</string>
+    <string-array name="mealTimeArray">
+        <item>Breakfast</item>
+        <item>Lunch</item>
+        <item>Dinner</item>
+        <item>Snack</item>
+    </string-array>
+    <string name="servHint">20</string>
+    <string name="notSuccessful">There was a problem adding the item to your food diary. Please try again.</string>
+    <string name="successful">The item was added to your food diary!</string>
+    <string name="foodDiaryHeading">Food Diary</string>
+    <string name="returnToFood">Return to Food Diary Page </string>
+    <string name="mealType">Meal Type </string>
 
-
-
-
+    <string name="dressingIsEmptyMsg">%1$s has not got dressed today.</string>
+    <string name="dressingResult">%1$s got dressed today at %2$s.</string>
+    <string name="dressingMultiResult">%1$s first got dressed today at %2$s.\n %1$s most recently changed at %3$s.</string>
+    <string name="dressingWashingIsEmpty">%1$s has not used the washing machine today.</string>
+    <string name="dressingWashingToday">%1$s used the washing machine today at %2$s.</string>
+    <string name="dressingWashingPrevious">%1$s has not used the washing machine today.\n\n The last time their clothes were washed was %2$s at %3$s.</string>
+    <string name="washReminderBtn">"Washing Reminder"</string>
+    <string name="dressReminderBtn">"Dressing Reminder"</string>
+    <string name="reminderQs">Would you like to send a reminder?</string>
 </resources>

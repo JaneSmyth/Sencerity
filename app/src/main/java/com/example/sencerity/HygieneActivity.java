@@ -28,7 +28,7 @@ public class HygieneActivity extends AppCompatActivity {
     private TextView displayData;
     CollectionReference userCollection;
     DocumentReference userDocument;
-    ;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

@@ -10,5 +10,32 @@
     <color name="copper_penny">#AD6A6C</color>
     <color name="flax">#E0D68A</color>
     <color name="illuminating_emerald">#419D78</color>
+    <color name="blue_sky">#5DBCD2</color>
+    <color name="blue_sky_2">#65CADE</color>
     <color name="cream">#F0FFCE</color>
+
+
+    <!-- .64 -->
+    <color name="light">#F3F0F3</color>
+    <color name="lAccent">#D1B1B0</color>
+    <color name="base">#C38C9D</color>
+
+
+    <!-- .65 -->
+    <color name="whiteShade">#fbf9fa</color>
+    <color name="offWhite">#f9f9f9</color>
+    <color name="offWhitePink">#f9f1f1</color>
+    <color name="offWhiteCream">#fbf7f5</color>
+    <color name="light2">#Faf9f9</color>
+    <color name="lAccent2">#D1B1B0</color>
+    <color name="baseSame">#c38c9d</color>
+    <color name="dAccent">#c87d9b</color>
+    <color name="dark2">#6c5663</color>
+    <color name="dark">#7c778d</color>
+    <color name="Grey">#aaa3aa</color>
+    <color name="myGreyPink">#afa3aa</color>
+
+
+
+
 </resources>

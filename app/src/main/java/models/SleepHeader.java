@@ -1,18 +1,26 @@
 package models;
 //recycler view header item
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
 public class SleepHeader extends RecyclerViewItem{
-    private String HeaderText;
+    private String averageSleepPerWeek;
+    private String weekDate;//i.e. week of april 20 -april 27
 
-    public SleepHeader(String headerText) {
-        HeaderText = headerText;
+    public String getAverageSleepPerWeek() {
+        return averageSleepPerWeek;
     }
 
-    public String getHeaderText() {
-        return HeaderText;
+    public void setAverageSleepPerWeek(String averageSleepPerWeek) {
+        this.averageSleepPerWeek = averageSleepPerWeek;
     }
 
-    public void setHeaderText(String headerText) {
-        HeaderText = headerText;
+    public String getWeekDate() {
+        return weekDate;
+    }
+
+    public void setWeekDate(String weekDate) {
+        this.weekDate = weekDate;
     }
 }
