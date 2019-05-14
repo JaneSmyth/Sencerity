@@ -66,11 +66,11 @@
             android:resource="@color/colorAccent" />
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
-            android:value="@string/default_notification_channel_id" />
+            android:value="@string/channel_id" />
 
         <activity android:name=".NotificationActivity">
             <intent-filter>
-                <action android:name="com.google.firebase.NotificationTarget"/>
+                <action android:name=".notification.target.senc"/>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

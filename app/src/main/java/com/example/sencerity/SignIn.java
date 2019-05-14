@@ -34,6 +34,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
     FirebaseAuth mAuth;
     FirebaseFirestore mFirestore;
+    private String currentId;
+    private String token;
 
 
     @Override
@@ -41,7 +43,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_in);
-
         mAuth = FirebaseAuth.getInstance();
         mFirestore = FirebaseFirestore.getInstance();
         // authentication instance
@@ -81,13 +82,20 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                                             }
 
                                             // Get new Instance ID token
-                                            String token = task.getResult().getToken();
+                                            token = task.getResult().getToken();
 
-                                            // Log and toast
-                                            String msg = getString(R.string.tokenMsg, token);
-                                            Log.d(TAG, msg);
-                                            Toast.makeText(SignIn.this, msg, Toast.LENGTH_SHORT).show();
-                                            sendToMainMenu();
+                                            Map<String, Object> tokenMap= new HashMap<>();
+                                            tokenMap.put("tokenId",token);
+                                            currentId = FirebaseAuth.getInstance().getUid();
+
+                                            mFirestore.collection("users").document(currentId).update(tokenMap).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                @Override
+                                                public void onSuccess(Void aVoid) {
+                                                    sendToMainMenu();
+                                                    String msg = getString(R.string.tokenMsg, token);
+                                                    Log.d(TAG, msg);
+                                                    Toast.makeText(SignIn.this, msg, Toast.LENGTH_SHORT).show();
+
                                         }
                                     });
                             //sign in success
@@ -104,9 +112,9 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
                                             sendToMainMenu();
 
                                         }
-                                    });
+                                    });*/
                                 }
-                            });*/
+                            });
 
                         } else {
                             Log.d(TAG,"sign in failed", task.getException());
