@@ -95,4 +95,30 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/foodButton"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/logOutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Log Out"
+        android:onClick="onClick"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/sendNotif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="146dp"
+        android:layout_marginTop="34dp"
+        android:layout_marginEnd="177dp"
+        android:layout_marginBottom="38dp"
+        android:onClick="onClick"
+        android:text="Send Notification"
+        app:layout_constraintBottom_toTopOf="@+id/foodButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -8,50 +8,6 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:492483915225:android:a22772f396273b45",
-        "android_client_info": {
-          "package_name": "com.example.myapplicationtest"
-        }
-      },
-      "oauth_client": [
-        {
-          "client_id": "492483915225-jfvc5cm4q8t3g7vb89vqsomc3oon7gde.apps.googleusercontent.com",
-          "client_type": 1,
-          "android_info": {
-            "package_name": "com.example.myapplicationtest",
-            "certificate_hash": "0cc576b6fbd0cb8ac22b30001d3439c9d1c08d94"
-          }
-        },
-        {
-          "client_id": "492483915225-onu2h9lv9mflht4uor66fr50ei742eh1.apps.googleusercontent.com",
-          "client_type": 3
-        }
-      ],
-      "api_key": [
-        {
-          "current_key": "AIzaSyD73Kb-PCi8K5mEcqheJBNmyDEUVuaM0G4"
-        }
-      ],
-      "services": {
-        "analytics_service": {
-          "status": 1
-        },
-        "appinvite_service": {
-          "status": 2,
-          "other_platform_oauth_client": [
-            {
-              "client_id": "492483915225-onu2h9lv9mflht4uor66fr50ei742eh1.apps.googleusercontent.com",
-              "client_type": 3
-            }
-          ]
-        },
-        "ads_service": {
-          "status": 2
-        }
-      }
-    },
-    {
-      "client_info": {
         "mobilesdk_app_id": "1:492483915225:android:d1eaf4f9e3a4e036",
         "android_client_info": {
           "package_name": "com.example.sencerity"
@@ -77,20 +33,42 @@
         }
       ],
       "services": {
-        "analytics_service": {
-          "status": 1
-        },
         "appinvite_service": {
-          "status": 2,
           "other_platform_oauth_client": [
             {
               "client_id": "492483915225-onu2h9lv9mflht4uor66fr50ei742eh1.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
-        },
-        "ads_service": {
-          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:492483915225:android:084aaa7b66233323",
+        "android_client_info": {
+          "package_name": "com.example.senceritytablet"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "492483915225-onu2h9lv9mflht4uor66fr50ei742eh1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD73Kb-PCi8K5mEcqheJBNmyDEUVuaM0G4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "492483915225-onu2h9lv9mflht4uor66fr50ei742eh1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         }
       }
     }
