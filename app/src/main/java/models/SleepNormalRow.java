@@ -24,7 +24,7 @@ import java.util.concurrent.TimeUnit;
 import static java.util.concurrent.TimeUnit.*;
 
 @IgnoreExtraProperties
-public class NormalRow extends RecyclerViewItem {
+public class SleepNormalRow extends RecyclerViewItem {
     /*
         private String sensor;
         private String patientId;
@@ -45,7 +45,7 @@ public class NormalRow extends RecyclerViewItem {
     String sleepingHours;
 
 
-    public NormalRow(String date, String timeAsleep, String sleepingHours) {
+    public SleepNormalRow(String date, String timeAsleep, String sleepingHours) {
         this.date = date;
         this.timeAsleep = timeAsleep;
         this.sleepingHours = sleepingHours;

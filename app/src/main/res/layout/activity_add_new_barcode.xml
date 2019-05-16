@@ -20,22 +20,23 @@
             android:orientation="vertical"
             android:padding="10dp">
 
-            <TextView
+            <EditText
                 android:id="@+id/productNameTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Product"
+                android:inputType="text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
-            <TextView
+            <EditText
                 android:id="@+id/brandTextView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:hint="Brand"
+                android:inputType="text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
-            <TextView
-                android:id="@+id/barcodeNumTextView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
@@ -67,13 +68,14 @@
                 app:layout_constraintRight_toLeftOf="@id/servingSizeTextView"
                 app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
+            <EditText
                 android:id="@+id/servingSizeTextView"
-                android:layout_width="wrap_content"
+                android:layout_width="90dp"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="8dp"
+                android:hint="@string/servingHint"
+                android:inputType="number"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large"
-                android:textSize="18sp"
+                android:textSize="16sp"
                 app:layout_constraintBottom_toTopOf="@id/foodDataLinearLayout"
                 app:layout_constraintLeft_toRightOf="@id/textViewServHeading"
                 app:layout_constraintRight_toRightOf="parent"
@@ -85,8 +87,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:orientation="vertical"
+
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/foodDataLinearLayout"
+                app:layout_constraintEnd_toStartOf="@id/foodDataLinearLayout"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/textViewServHeading">
 
@@ -161,68 +164,96 @@
                 android:id="@+id/foodDataLinearLayout"
                 android:layout_width="125dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
+                android:layout_marginTop="5dp"
                 android:orientation="vertical"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/titleLinearLayout"
+                app:layout_constraintStart_toEndOf="@id/titleLinearLayout"
                 app:layout_constraintTop_toBottomOf="@id/servingSizeTextView">
 
-                <TextView
+                <EditText
                     android:id="@+id/kcalsTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:textSize="18sp" />
+                    android:layout_marginVertical="1dp"
+                    android:hint="@string/calsHint"
+                    android:inputType="number"
 
-                <TextView
+                    android:textSize="14sp" />
+
+                <EditText
                     android:id="@+id/proteinTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:textSize="18sp" />
+                    android:layout_marginVertical=".5dp"
+                    android:hint="@string/proteinHint"
+                    android:inputType="number"
 
-                <TextView
+                    android:textSize="14sp" />
+
+                <EditText
                     android:id="@+id/carbsTotalTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:textSize="18sp" />
+                    android:layout_marginVertical=".5dp"
+                    android:hint="@string/carbHint"
+                    android:inputType="number"
 
-                <TextView
+                    android:textSize="14sp" />
+
+
+                <EditText
                     android:id="@+id/fatsTotalTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:textSize="18sp" />
+                    android:layout_marginVertical=".5dp"
+                    android:hint="@string/fatHint"
+                    android:textSize="14sp" />
 
-                <TextView
+
+                <EditText
                     android:id="@+id/satFatTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:textSize="18sp" />
+                    android:layout_marginVertical=".5dp"
+                    android:hint="@string/satFatHint"
+                    android:inputType="number"
 
-                <TextView
+                    android:textSize="14sp" />
+
+
+                <EditText
                     android:id="@+id/sugarCarbsTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:textSize="18sp" />
+                    android:layout_marginVertical=".5dp"
+                    android:hint="@string/sugarHint"
+                    android:inputType="number"
 
-                <TextView
+                    android:textSize="14sp" />
+
+
+                <EditText
                     android:id="@+id/fibreTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:textSize="18sp" />
+                    android:layout_marginVertical=".5dp"
+                    android:textSize="14sp"
+                    android:inputType="number"
 
-                <TextView
+                    android:hint="@string/fibreHint"/>
+
+
+                <EditText
                     android:id="@+id/saltTextView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginVertical="8dp"
-                    android:textSize="18sp" />
+                    android:layout_marginVertical=".5dp"
+                    android:hint="@string/saltHint"
+                    android:inputType="number"
+
+                    android:textSize="14sp" />
+
 
 
             </LinearLayout>
@@ -235,7 +266,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_above="@id/FoodButton"
-        android:text="@string/foodAsk"
+        android:text="@string/foodQsBar"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Widget.ActionMode.Title"
         android:textColor="@color/base" />
 

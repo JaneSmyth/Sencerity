@@ -61,10 +61,10 @@ public class FoodAdapter extends RecyclerView.Adapter {
              NormalViewHolder normalHolder = (NormalViewHolder)holder;
              FoodNormalRow normalRow = (FoodNormalRow)recyclerItem;
 
-             normalHolder.mProduct.setText(normalRow.getmProduct());
-             normalHolder.mServing.setText(String.valueOf(normalRow.getmServing()));
-             normalHolder.mCalories.setText(String.valueOf(normalRow.getmCalories()));
-             normalHolder.mGrade.setText(normalRow.getmGrade());
+             normalHolder.mProduct.append(normalRow.getmProduct());
+             normalHolder.mServing.append(String.valueOf(normalRow.getmServing()));
+             normalHolder.mCalories.append(String.valueOf(normalRow.getmCalories()));
+             normalHolder.mGrade.append(normalRow.getmGrade());
 
 
         }

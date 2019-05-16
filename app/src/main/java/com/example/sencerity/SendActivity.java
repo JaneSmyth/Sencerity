@@ -2,7 +2,6 @@ package com.example.sencerity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
 
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,11 +13,15 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,9 +29,12 @@ import java.util.Map;
 public class SendActivity extends AppCompatActivity implements View.OnClickListener {
 
     private TextView userIdView;
+    private String patientId;//the patient ID of the person we want to send the notification to
+    private String msgReceiverUserId;//the patients user login ID
+    private String msgReceiverUserName;//the name of the person we want to send the notification to
     private String userId;
-    private String mUserName;
-    private String mCurrentId;
+
+    String docId;
 
     private EditText mMessageView;
     private Button mSubmitBtn;
@@ -42,18 +48,72 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send);
 
-        userIdView = findViewById(R.id.userIdView);
         mMessageView = findViewById(R.id.messageView);
         mSubmitBtn = findViewById(R.id.sendButton);
         mMessageProgress = findViewById(R.id.messageProgress);
         mFirestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
-        //TODO: check next 2 lines
-        userId = mAuth.getUid(); //technically this should be the user ID of the person we want to send the notification to
-        mCurrentId = mAuth.getUid();//the id of the current user logged in
-        userIdView.setText(userId);
-        mSubmitBtn.setOnClickListener(this);
 
+        userId = mAuth.getUid();//the id of the current user logged in
+
+        //userIdView.setText(userId);
+        mSubmitBtn.setOnClickListener(this);
+        msgReceiverUserName = MainMenuActivity.patientSelectName;
+        Log.d("msgReceiverName",msgReceiverUserName);
+        getPatientInfo();
+
+
+    }
+    public void getPatientInfo(){
+
+        mFirestore.collection("users").document(userId).collection("patient")
+                .whereEqualTo("name",msgReceiverUserName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                        for(QueryDocumentSnapshot doc: task.getResult())
+                        {
+                            patientId = doc.getString("patientId");
+                        }
+                            getDocId();
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("patient firebase Error:",""+ e);
+                    }
+                });
+
+
+
+    }
+
+    public void getDocId(){
+        mFirestore.collection("users")
+                .whereEqualTo("patientId", patientId)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> thisTask) {
+                        if(thisTask.isSuccessful()){
+                            for(QueryDocumentSnapshot doc: thisTask.getResult())
+                            {
+                                docId = doc.getId();
+                            }
+                        }
+                        msgReceiverUserId = docId;
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("docid firebase Error:", ""+e);
+                    }
+                });
 
     }
 
@@ -64,21 +124,6 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
 
 
     }
-/*
-    public void notifBuilder() {
-    }
-
-        String textTitle = "Sencerity Notification";
-        String textContent ="You have one new message";
-    NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "CHANNEL_01")
-                .setSmallIcon(R.drawable.fui_ic_github_white_24dp)
-                .setContentTitle(textTitle)
-                .setContentText(textContent)
-                .setPriority(NotificationCompat.PRIORITY_DEFAULT);
-    }
-
-
-*/
 
     public void sendNotification(){
 
@@ -90,7 +135,7 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
                     notificationMessage.put("message",message);
                     notificationMessage.put("from", userId);
 
-                    mFirestore.collection("users").document(userId).collection("notifications")
+                    mFirestore.collection("users").document(msgReceiverUserId).collection("notifications")
                             .add(notificationMessage)
                             .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                                 @Override
@@ -104,7 +149,7 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
                         @Override
                         public void onFailure(@NonNull Exception e) {
                             Toast.makeText(SendActivity.this, "Notification Error."+e.getMessage(), Toast.LENGTH_SHORT).show();
-                            Log.d("!DEV WARNING!!",e.getMessage());
+                            Log.d("sendNotification()ErrorMsg: ",e.getMessage());
                             mMessageProgress.setVisibility(View.INVISIBLE);
                         }
                     });

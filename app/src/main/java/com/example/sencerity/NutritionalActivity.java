@@ -17,12 +17,10 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class NutritionalActivity extends AppCompatActivity{
 
@@ -56,8 +54,9 @@ public class NutritionalActivity extends AppCompatActivity{
         db = FirebaseFirestore.getInstance();
         setTextViews();
         loadDataFromFirebase();
-    }
+        Log.d("barcodeNum",""+FoodActivity.barcodeValue);
 
+    }
     private void setTextViews(){
         caloriesTextView=findViewById(R.id.kcalsTextView);
         proteinTextView=findViewById(R.id.proteinTextView);
@@ -83,43 +82,45 @@ public class NutritionalActivity extends AppCompatActivity{
     private void loadDataFromFirebase() {
 
         db.collection("products")
-               // .whereEqualTo("barcodeNumber", barcodeNum )
+                .whereEqualTo("barcodeNumber", FoodActivity.barcodeValue)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                            for (QueryDocumentSnapshot querySnapshot : task.getResult()) {
 
-                        for (QueryDocumentSnapshot querySnapshot : task.getResult()) {
-                            Log.d(TAG, querySnapshot.getId() + " => " + querySnapshot.getData());
-                            String barcode = querySnapshot.getString("barcodeNumber");
-                            String brand = querySnapshot.getString("brandName");
-                            String product = querySnapshot.getString("productName");
-
-
-                            Double carbs = querySnapshot.getDouble("carbsPerServ");
-                            Double fibre = querySnapshot.getDouble("fibrePerServ");
-                            Double cals = querySnapshot.getDouble("kcalsPerServ");
-                            Double protein = querySnapshot.getDouble("proteinPerServ");
-                            Double salt = querySnapshot.getDouble("saltPerServ");
-                            Double satFat = querySnapshot.getDouble("satFatPerServ");
-                            Double servSize = querySnapshot.getDouble("servingInGrams");
-                            Double sugar = querySnapshot.getDouble("sugarCarbsPerServ");
-                            Double fat = querySnapshot.getDouble("totalFatPerServ");
-
-                            foodGradeCalc = new FoodGradeCalculations(carbs,sugar,fat,satFat,servSize,protein,salt,fibre);
-
-                            //should be able to get grade, stored in db, for 100 grams of the food (or whatever the
-                            //weight of the data being stored)..should be added
-                            foodHeader = new FoodProductHeader(product,brand,barcode);
-                            foodInfo = new FoodProductInfo(servSize,cals,protein,carbs,sugar,fat,satFat,fibre,salt);
-
-                            retrieveProductInfo();
-                            retrieveNutritionalData();
+                                    Log.d(TAG, querySnapshot.getId() + " => " + querySnapshot.getData());
+                                    String barcode = querySnapshot.getString("barcodeNumber");
+                                    String brand = querySnapshot.getString("brandName");
+                                    String product = querySnapshot.getString("productName");
 
 
-                        }
+                                    Double carbs = querySnapshot.getDouble("carbsPerServ");
+                                    Double fibre = querySnapshot.getDouble("fibrePerServ");
+                                    Double cals = querySnapshot.getDouble("kcalsPerServ");
+                                    Double protein = querySnapshot.getDouble("proteinPerServ");
+                                    Double salt = querySnapshot.getDouble("saltPerServ");
+                                    Double satFat = querySnapshot.getDouble("satFatPerServ");
+                                    Double servSize = querySnapshot.getDouble("servingInGrams");
+                                    Double sugar = querySnapshot.getDouble("sugarCarbsPerServ");
+                                    Double fat = querySnapshot.getDouble("totalFatPerServ");
 
-                    }
+                                    foodGradeCalc = new FoodGradeCalculations(carbs, sugar, fat, satFat, servSize, protein, salt, fibre);
+
+                                    //should be able to get grade, stored in db, for 100 grams of the food (or whatever the
+                                    //weight of the data being stored)..should be added
+                                    foodHeader = new FoodProductHeader(product, brand, barcode);
+                                    foodInfo = new FoodProductInfo(servSize, cals, protein, carbs, sugar, fat, satFat, fibre, salt);
+
+                                    retrieveProductInfo();
+                                    retrieveNutritionalData();
+                                }
+
+
+                            }
+
+
+
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
@@ -167,7 +168,7 @@ public class NutritionalActivity extends AppCompatActivity{
          startActivityForResult(intent, 0);
       }*/
     public void onClickAddFood(View v){
-            Intent addFoodToDiary = new Intent(this,AddFoodToDiary.class);
+            Intent addFoodToDiary = new Intent(this, AddFoodToDiaryActivity.class);
             addFoodToDiary.putExtra("calories",foodInfo.getCalories());
             addFoodToDiary.putExtra("servingSize",foodInfo.getServingSizeGrams());
             addFoodToDiary.putExtra("product",foodHeader.getProductName());

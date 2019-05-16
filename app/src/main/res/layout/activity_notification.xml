@@ -8,12 +8,40 @@
 
     <TextView
         android:id="@+id/notifData"
+        android:layout_width="318dp"
+        android:layout_height="194dp"
+        android:layout_marginBottom="189dp"
+        android:textColor="@color/base"
+        android:textSize="16sp"
+        app:layout_constraintBottom_toTopOf="@+id/replyBtn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <Button
+        android:id="@+id/replyBtn"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="140dp"
+        android:background="@color/dark2"
+        android:text="Send Reply"
+        android:onClick="onClickReply"
+        android:textColor="@color/light2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="118dp"
-        android:layout_marginBottom="594dp"
-        android:text="TextView"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginTop="73dp"
+        android:layout_marginBottom="63dp"
+        android:fontFamily="sans-serif-medium"
+        android:text="Your Message"
+        android:textColor="@color/base"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/notifData"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

@@ -8,12 +8,12 @@
         android:id="@+id/mealTypeView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/silver_pink_50percOpacity"
+        android:background="@color/dAccent"
+        android:fontFamily="sans-serif-medium"
         android:padding="4dp"
         android:text="TextView"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/copper_penny"
-        android:textSize="20sp"
-        android:textStyle="bold|italic" />
+        android:textColor="@color/light2"
+        android:textSize="20sp" />
 </LinearLayout>

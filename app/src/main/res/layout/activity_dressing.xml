@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/dark2"
     tools:context=".DressingActivity">
 
     <androidx.cardview.widget.CardView
@@ -68,39 +67,21 @@
         app:layout_constraintTop_toBottomOf="@+id/cardViewWash" />
 
     <Button
-        android:id="@+id/washReminderBtn"
-        style="@style/Widget.AppCompat.Button"
-        android:layout_width="170dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="11dp"
-        android:layout_marginBottom="8dp"
-        android:background="@color/lAccent"
-        android:onClick="onClickReminder"
-        android:text="@string/washReminderBtn"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/dressReminderBtn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3"
-        app:layout_constraintVertical_bias="0.271" />
-
-    <Button
         android:id="@+id/dressReminderBtn"
         style="@style/Widget.AppCompat.Button"
-        android:layout_width="170dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="11dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginEnd="32dp"
         android:layout_marginBottom="8dp"
-        android:background="@color/lAccent"
+        android:background="@color/dark2"
         android:onClick="onClickReminder"
         android:text="@string/dressReminderBtn"
         android:textColor="@color/light2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/washReminderBtn"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView3"
         app:layout_constraintVertical_bias="0.271" />
 
@@ -111,7 +92,6 @@
         android:layout_marginStart="5dp"
         android:layout_marginTop="44dp"
         android:layout_marginEnd="5dp"
-        app:cardBackgroundColor="@color/lAccent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +104,7 @@
             android:layout_gravity="center"
             android:padding="5dp"
             android:text="@string/reminderQs"
-            android:textColor="@color/dark2"
+            android:textColor="@color/base"
             android:textSize="16sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>

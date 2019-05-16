@@ -16,23 +16,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-
+        <activity android:name=".AddNewBarcodeActivity"></activity>
+        <activity android:name=".PatientSelectActivity" />
         <activity android:name=".SendActivity" />
         <activity android:name=".testerActivity" />
         <activity android:name=".ConfirmFoodAddedActivity" />
-        <activity android:name=".AddFoodToDiary" />
+        <activity android:name=".AddFoodToDiaryActivity" />
         <activity android:name=".NutritionalActivity" />
         <activity android:name=".BarcodeScannerActivity" />
-        <activity android:name=".PatientOption" />
         <activity android:name=".SleepActivity" />
         <activity android:name=".MobilityActivity" />
         <activity android:name=".FoodActivity" />
         <activity android:name=".ContinenceActivity" />
         <activity android:name=".HygieneActivity" />
         <activity android:name=".DressingActivity" />
-        <activity android:name=".MainMenu" />
-        <activity android:name=".LoggedIn" />
-        <activity android:name=".SignIn">
+        <activity android:name=".MainMenuActivity" />
+        <activity android:name=".SignInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -44,8 +43,7 @@
             android:name="com.google.firebase.ml.vision.DEPENDENCIES"
             android:value="barcode" />
 
-        <service
-            android:name=".FirebaseMessagingService">
+        <service android:name=".FirebaseMessagingService">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
@@ -67,10 +65,14 @@
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_channel_id"
             android:value="@string/channel_id" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <activity android:name=".NotificationActivity">
             <intent-filter>
-                <action android:name=".notification.target.senc"/>
+                <action android:name=".notification.target.senc" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>

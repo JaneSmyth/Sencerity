@@ -88,7 +88,6 @@ public class DressingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_dressing);
         displayData = findViewById(R.id.dressedTextView);
         displayWashData = findViewById(R.id.washingTextView);
-        washReminderBtn = findViewById(R.id.washReminderBtn);
         dressReminderBtn = findViewById(R.id.dressReminderBtn);
         today=new Date();
         db = FirebaseFirestore.getInstance();
@@ -97,10 +96,7 @@ public class DressingActivity extends AppCompatActivity {
         if (currentUser != null) {
             userId = currentUser.getUid();
         }
-        else
-        {
-            userId="kM2gyYrk5MeLlLFKoZdNOViGwJI2";
-        }
+
         wDateTimeConvert = new DateAndTimeConversions(today);
 
         userCollection = db.collection("users");
@@ -267,13 +263,10 @@ public class DressingActivity extends AppCompatActivity {
 
 
     public void onClickReminder(View v){
-        if(v.getId() == R.id.dressReminderBtn)
-        {
-            Toast.makeText(this, "A reminder to get dressed has been sent.", Toast.LENGTH_SHORT).show();
-        }
-        if(v.getId() == R.id.washReminderBtn)
-        {
-            Toast.makeText(this, "A reminder to put on a wash has been sent.", Toast.LENGTH_SHORT).show();
-        }
+
+            Intent intent=new Intent(this,SendActivity.class);
+            startActivity(intent);
+
+
     }
 }

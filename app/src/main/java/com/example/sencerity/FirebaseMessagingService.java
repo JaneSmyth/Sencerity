@@ -7,6 +7,7 @@ import android.app.PendingIntent;
 import android.app.TaskStackBuilder;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
@@ -43,15 +44,16 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
         String click_action = Objects.requireNonNull(remoteMessage.getNotification()).getClickAction();
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(this, "@string/channel_id")
-                .setSmallIcon(R.drawable.ic_launcher_background)
+                .setSmallIcon(R.mipmap.ic_launcher_sencerity)
+                .setBadgeIconType(NotificationCompat.BADGE_ICON_SMALL)
                 .setContentTitle(remoteMessage.getNotification().getTitle())
                 .setContentText(remoteMessage.getNotification().getBody())
                 .setAutoCancel(true)
-                .setColor(0xffff7700)
                 .setVibrate(new long[]{100, 100, 100, 100})
                 .setSound(defaultSoundUri)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
+        //  .setColor(0xffff7700)
         Intent resultIntent = new Intent(click_action);
         resultIntent.putExtra("dataMessage", dataMessage);
         resultIntent.putExtra("dataFrom", dataFrom);
@@ -93,49 +95,3 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
     }
 
 
-    /*
-    @Override
-    public void onMessageReceived(RemoteMessage remoteMessage){
-        super.onMessageReceived(remoteMessage);
-
-        String messageTitle= remoteMessage.getNotification().getTitle();
-        String messageBody = remoteMessage.getNotification().getBody();
-
-        String click_action =remoteMessage.getNotification().getClickAction();
-        String dataMessage = remoteMessage.getData().get("message");
-        String dataFrom = remoteMessage.getData().get("from");
-
-        NotificationCompat.Builder mBuilder =
-                new NotificationCompat.Builder(this,getString(R.string.default_notification_channel_id))
-                    .setSmallIcon(R.mipmap.ic_launcher_sencerity)
-                    .setContentTitle(messageTitle)
-                    .setContentText(messageBody);
-
-
-        Intent resultIntent = new Intent(click_action);
-        resultIntent.putExtra("dataMessage",dataMessage);
-        resultIntent.putExtra("dataFrom",dataFrom);
-
-        PendingIntent resultPendingIntent =
-                PendingIntent.getActivity(
-                        this,
-                        4,
-                        resultIntent,
-                        PendingIntent.FLAG_UPDATE_CURRENT
-                );
-
-        mBuilder.setContentIntent(resultPendingIntent);
-
-        int mNotificationId = (int)System.currentTimeMillis(); //this will make the notification always have a different id
-        //as its the current timestamp in milli
-        NotificationManager mNotifyMgr =
-                (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-
-        mNotifyMgr.notify(mNotificationId,mBuilder.build());
-    }
-
-
-
-
-}
-*/

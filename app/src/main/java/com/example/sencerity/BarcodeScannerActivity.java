@@ -26,6 +26,7 @@ public class BarcodeScannerActivity extends AppCompatActivity {
     private BarcodeDetector detector;
     private CameraSource camSource;
     public static Barcode barcodeNum;
+    public static String barcodeNumber;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,7 @@ public class BarcodeScannerActivity extends AppCompatActivity {
                 if(barcodes.size()>0){
                     Intent intent = new Intent();
                     barcodeNum = barcodes.valueAt(0);
+                    barcodeNumber = barcodeNum.displayValue;
                     intent.putExtra("barcode",barcodeNum);//get latest barcode
                     //intent.putExtra("barcode",barcodes.valueAt(0));//get latest barcode
                     setResult(CommonStatusCodes.SUCCESS,intent);
@@ -108,59 +110,5 @@ public class BarcodeScannerActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-//-------------------------------------------------------------
-//Previous code for barcode scanner from image uploaded only
-/*
-        public FirebaseVisionBarcodeDetector detector;
-        public ImageView barcodeImageVw;
-        public Bitmap bitmap;
-        public FirebaseVisionImage image;
-        public static final String ERR="barcode_failure";
-        public TextView barcodeTextView;
-    */
-
-/*
-    public void barcodeManager() {
-
-        barcodeImageVw = findViewById(R.id.barcodeImageView);
-        bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.barcode);
-        barcodeImageVw.setImageBitmap(bitmap);
-
-        image = FirebaseVisionImage.fromBitmap(bitmap);
-
-        barcodeTextView=findViewById(R.id.textViewBarcodeInfo);
-
-        detector = FirebaseVision.getInstance().getVisionBarcodeDetector();
-
-        Task<List<FirebaseVisionBarcode>> result = detector.detectInImage(image)
-                .addOnSuccessListener(new OnSuccessListener<List<FirebaseVisionBarcode>>() {
-                    @Override
-                    public void onSuccess(List<FirebaseVisionBarcode> barcodes) {
-                        for(FirebaseVisionBarcode barcode: barcodes) {
-                            String rawValue = barcode.getRawValue();
-                            int valueType = barcode.getValueType();
-                            barcodeTextView.append(rawValue);
-                            barcodeTextView.append("======");
-                            barcodeTextView.append(String.valueOf(valueType));
-
-
-
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.e(ERR, "barcode scanner failed!", e);
-                    }
-                });
-
-    }
-    */
 
 

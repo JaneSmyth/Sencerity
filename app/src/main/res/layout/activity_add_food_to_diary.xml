@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddFoodToDiary">
+    tools:context=".AddFoodToDiaryActivity">
 
 
     <androidx.cardview.widget.CardView
@@ -13,7 +13,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:layout_marginBottom="30dp"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -30,6 +29,7 @@
                 android:id="@+id/productNameTextView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
                 android:textAppearance="@style/TextAppearance.AppCompat.Large" />
 
             <TextView
@@ -46,17 +46,36 @@
 
     </androidx.cardview.widget.CardView>
 
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="112dp"
+        android:layout_marginTop="37dp"
+        android:layout_marginEnd="116dp"
+        android:layout_marginBottom="60dp"
+        android:background="@color/fui_transparent"
+        android:fontFamily="sans-serif-medium"
+        android:text="Please enter the portion you would like to add to your Food Diary"
+        android:textAlignment="center"
+        android:textColor="@color/base"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@+id/titleLinearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardViewHeader" />
+
     <LinearLayout
         android:id="@+id/titleLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="250dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginBottom="140dp"
         android:gravity="left"
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@id/addFoodToDiaryBtn"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toLeftOf="@id/textLinearLayout"
-        app:layout_constraintTop_toBottomOf="@id/cardViewHeader"
         app:layout_constraintVertical_weight="1">
 
         <TextView
@@ -64,9 +83,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textAlignment="center"
+            android:fontFamily="sans-serif-light"
 
             android:text="@string/caloriesPerServingEntered"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
@@ -74,9 +94,10 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textAlignment="center"
+            android:fontFamily="sans-serif-light"
 
             android:text="@string/servingSizeByUser"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
 
         <TextView
@@ -84,65 +105,70 @@
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:textAlignment="center"
+            android:fontFamily="sans-serif-light"
 
             android:text="@string/mealType"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/textLinearLayout"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_marginTop="10dp"
+        android:layout_width="137dp"
+        android:layout_height="234dp"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="28dp"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/addFoodToDiaryBtn"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintLeft_toRightOf="@id/titleLinearLayout"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardViewHeader"
+        app:layout_constraintTop_toBottomOf="@+id/textView14"
         app:layout_constraintVertical_weight="1">
 
         <TextView
             android:id="@+id/calculatedCalsPerServ"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="12"
-            android:textAlignment="center"
-            android:layout_weight="1"/>
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-light"
+            android:textAlignment="textStart" />
 
         <EditText
             android:id="@+id/servInputEditTextView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-light"
             android:hint="@string/servHint"
             android:importantForAutofill="no"
-            android:inputType="numberDecimal"
-            android:textAlignment="center"
-            android:layout_weight="1"/>
+            android:inputType="number"
+            android:textAlignment="center" />
 
         <Spinner
             android:id="@+id/spinnerFood"
             style="@android:style/Widget.Material.Light.Spinner.Underlined"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_weight="1"
             android:entries="@array/mealTimeArray"
             android:gravity="center"
             android:spinnerMode="dropdown"
-            android:textAlignment="center"
-            android:layout_weight="1"/>
+            android:textAlignment="center" />
     </LinearLayout>
 
     <Button
         android:id="@+id/addFoodToDiaryBtn"
-        android:layout_width="160dp"
-        android:layout_height="48dp"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="60dp"
+        android:background="@color/dark2"
+        android:fontFamily="sans-serif-medium"
         android:onClick="onClickConfirmFoodAdd"
         android:text="@string/addFood"
+        android:textColor="@color/light2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        />
+        app:layout_constraintRight_toRightOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

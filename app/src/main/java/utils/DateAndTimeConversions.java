@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
@@ -11,15 +12,12 @@ public class DateAndTimeConversions {
 
     private Date dateToFormat;
     private String formattedDate;
-    private Date dateInMilli;
     private SimpleDateFormat formatter;
-    private Long milli;
 
     public DateAndTimeConversions(Date dateToConvert){
         this.dateToFormat=dateToConvert;
 
     }
-
 
     public String getDateMonthYearFormat(){
        formatter = new SimpleDateFormat("dd-MM-yyyy",Locale.getDefault());

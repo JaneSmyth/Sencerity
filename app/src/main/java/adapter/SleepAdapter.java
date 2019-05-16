@@ -14,7 +14,7 @@ import com.example.sencerity.R;
 import java.util.List;
 
 import models.SleepHeader;
-import models.NormalRow;
+import models.SleepNormalRow;
 import models.RecyclerViewItem;
 
 public class SleepAdapter extends RecyclerView.Adapter{
@@ -68,7 +68,7 @@ public class SleepAdapter extends RecyclerView.Adapter{
         }
         else if(holder instanceof NormalViewHolder){
             NormalViewHolder normalHolder=(NormalViewHolder)holder;
-            NormalRow normalRow = (NormalRow)recyclerItem;
+            SleepNormalRow normalRow = (SleepNormalRow)recyclerItem;
 
             //normalHolder.mDateTime.setText(normalRow.getLocalDateTime());
             normalHolder.mDate.setText(normalRow.getDate());
@@ -90,7 +90,7 @@ public class SleepAdapter extends RecyclerView.Adapter{
         if(recyclerViewItem instanceof SleepHeader){
             return HEADER_ITEM;
         }
-        else if(recyclerViewItem instanceof NormalRow){
+        else if(recyclerViewItem instanceof SleepNormalRow){
             return NORMAL_ITEM;
         }
         else{

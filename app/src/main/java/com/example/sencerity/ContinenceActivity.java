@@ -2,9 +2,13 @@ package com.example.sencerity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
+
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,7 +38,7 @@ public class ContinenceActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_food);
+        setContentView(R.layout.activity_continence);
         displayData = findViewById(R.id.dataTextView);
 
         db = FirebaseFirestore.getInstance();
@@ -44,9 +48,7 @@ public class ContinenceActivity extends AppCompatActivity {
         }
         userCollection = db.collection("users");
         userDocument = userCollection.document(userId);
-        getDataFromContinenceDocs();
-
-
+        //getDataFromContinenceDocs();
     }
 
 
@@ -71,6 +73,5 @@ public class ContinenceActivity extends AppCompatActivity {
                     }
                 });
     }
-
 
 }

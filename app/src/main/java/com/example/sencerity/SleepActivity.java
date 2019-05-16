@@ -7,7 +7,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.preference.PreferenceActivity;
 import android.util.Log;
 import android.widget.Toast;
 
@@ -21,26 +20,28 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDateTime;
 
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
 
 import adapter.SleepAdapter;
+import models.SleepDataPopulated;
 import models.SleepDateTimeData;
-import models.SleepHeader;
-import models.NormalRow;
 import models.RecyclerViewItem;
+import models.SleepNormalRow;
 import utils.SleepDuration;
 
 public class SleepActivity extends AppCompatActivity {
@@ -52,6 +53,7 @@ public class SleepActivity extends AppCompatActivity {
     private ArrayList<RecyclerViewItem> recyclerViewItems;
     public ArrayList<Date> dateList;
     // private List<RecyclerViewItem> sleepArrayList;
+    List<SleepDataPopulated> finalList;
     private SleepAdapter adapter;
     private Date timestampToDate;
     private PieChart pieChart;
@@ -65,8 +67,10 @@ public class SleepActivity extends AppCompatActivity {
     private List<SleepDateTimeData> sleepDateTimeData = new ArrayList<>();
     private Boolean sensorPressure;
     private String sleepDurationClassReturn;
-    private String sleepDuration;
+    private SleepDuration sleepDuration;
+    //  private String sleepDuration;
     int index;
+    int i;
 
 
     @Override
@@ -78,9 +82,8 @@ public class SleepActivity extends AppCompatActivity {
         setUpRecyclerView();
         setUpFirebase();
         loadDataFromFirebase();
+        i = 0;
 
-        //Time();
-        //DrawPie();
 
     }
 
@@ -96,25 +99,14 @@ public class SleepActivity extends AppCompatActivity {
                     @Override
                     public void onComplete(@NonNull Task<QuerySnapshot> task) {
 
-                        for (DocumentSnapshot querySnapshot : task.getResult()) {
+                        for (QueryDocumentSnapshot querySnapshot : task.getResult()) {
 
-/*
                             timestampToDate = querySnapshot.getTimestamp("dateTime").toDate();
-                            Boolean sensorPressure = querySnapshot.getBoolean("sensorPressure");
-                           // SleepHeader header = new SleepHeader(s);
-                            //recyclerViewItems.add(header);
-                            NormalRow normalRow = new NormalRow(timestampToDate,querySnapshot.getString("sensor"),
-                                   querySnapshot.getString("patientId"));
-                            sleepData.add(new SleepDateTimeData(timestampToDate,sensorPressure));
-                             recyclerViewItems.add(normalRow);
-*/
-                            timestampToDate = querySnapshot.getTimestamp("dateTime").toDate();
-                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy HH:mm:ss", Locale.ENGLISH);
+                            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy HH:mm", Locale.ENGLISH);
                             dayDate = sdf.format(timestampToDate);
                             sensorPressure = querySnapshot.getBoolean("sensorPressure");
-                            sleepDateTimeData.add(new SleepDateTimeData(dayDate, sensorPressure));
-
-
+                            sleepDateTimeData.add(new SleepDateTimeData(dayDate, sensorPressure, timestampToDate));
+                            i++;
                         }
 
                         accumulateData();
@@ -131,25 +123,34 @@ public class SleepActivity extends AppCompatActivity {
                 });
     }
 
-    private void accumulateData(){
-        SleepDuration sleepDuration = new SleepDuration(sleepDateTimeData);
-        //each nights sleepDuration
-        for(index=0;index<sleepDateTimeData.size();index++){
-            sleepDurationClassReturn = sleepDuration.durationOfTimeSleep(index);
-            if(sleepDurationClassReturn !=null){
-                String dur = sleepDurationClassReturn;
-                String sleepToWakeTime = sleepDuration.getSleepTimeAndWakeTime(index);
-                String date = sleepDuration.getDateOfSleepData(index);
+    private void accumulateData() {
+        sleepDuration = new SleepDuration(sleepDateTimeData);
 
-                //COMMENTING OUT FOR TESTING PURPOSES
-                NormalRow normalRow = new NormalRow(date,dur,sleepToWakeTime);
-                recyclerViewItems.add(normalRow);
-                adapter = new SleepAdapter (SleepActivity.this, recyclerViewItems);
-
-                mRecyclerView.setAdapter(adapter);
-
-            }
+        for (index = 0; index < sleepDateTimeData.size(); index++) {
+            sleepDuration.getEligibleDates(index);
         }
+        displayData();
+    }
+
+    private void displayData() {
+
+        finalList = sleepDuration.returnedData();
+        drawPie();
+        int j = finalList.size() - 1;
+
+        while (j >= 0) {
+            Log.d("j", "" + j);
+            SleepNormalRow normalRow = new SleepNormalRow(
+                    finalList.get(j).getDateOfSleep(),
+                    finalList.get(j).getDurationString(),
+                    finalList.get(j).getSleepTimeToWakeTime());
+            recyclerViewItems.add(normalRow);
+            j--;
+        }
+
+        adapter = new SleepAdapter(SleepActivity.this, recyclerViewItems);
+        mRecyclerView.setAdapter(adapter);
+
     }
 
     private void setUpFirebase() {
@@ -157,8 +158,6 @@ public class SleepActivity extends AppCompatActivity {
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             userId = currentUser.getUid();
-        } else {
-            userId = "kM2gyYrk5MeLlLFKoZdNOViGwJI2";
         }
     }
 
@@ -169,13 +168,26 @@ public class SleepActivity extends AppCompatActivity {
     }
 
 
-    private void DrawPie() {
+    private void drawPie() {
+
+
+        String duration = finalList.get(finalList.size()-1).getDur();
+        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
+        Calendar cal =Calendar.getInstance();
+        try {
+            cal.setTime(formatter.parse(duration));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        long timeElap = Calendar.getInstance().getTimeInMillis();
+
+        totalTime = (float)86400000L;//86,400 milli in 24hr
+        timeLeft = totalTime- timeElap;
         pieChart = findViewById(R.id.sleepPieChart);
         ArrayList<PieEntry> yvalues = new ArrayList<>();
 
         yvalues.add(new PieEntry(timeElap, "Asleep"));
         yvalues.add(new PieEntry(timeLeft, "Awake"));
-
 
 
         PieDataSet pDataSet = new PieDataSet(yvalues, "Time asleep");
@@ -192,43 +204,4 @@ public class SleepActivity extends AppCompatActivity {
     }
 
 
-
-       private void Time(){
-        long t2 = 1548572460L; //seconds
-        long t1 = 1548541800L; //seconds
-        timeElapsed = t2-t1;
-        timeElap = timeElapsed;
-        totalTime = (float)86400L;//86,400 seconds in 24hr
-        timeLeft = totalTime- timeElap;
-
-    }
 }
-    /*
-    private void headerDates(LocalDateTime dateTime,int i){
-
-        if(!(dateList.get(i) == dateList.get(i - 1)) |i==0 ) {
-            //so if the dates are not the same or its the first date
-            SleepHeader header = new SleepHeader(dateTime.toString());
-            recyclerViewItems.add(header);
-        }
-        else{
-            //no header
-        }
-
-
-        if(dayDate == null) {
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy ");
-            dayDate = sdf.format(timestamp);
-        }
-        else{
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MMM/yyyy ");
-            String dayDate2 = sdf.format(timestamp);
-            //Continue from here !!!!!!!
-        }
-
-
-
-    }
-
-}
-*/

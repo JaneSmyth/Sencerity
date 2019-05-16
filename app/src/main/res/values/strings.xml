@@ -54,5 +54,24 @@
     <string name="tokenMsg">The reg token id is %1$s</string>
     <string name="channel_id">default_channel_id</string>
     <string name="channel_name">default_channel</string>
+    <string name="sendMessage">Send A Message</string>
+    <string name="notifications">View Notifications</string>
+    <string name="patientSelection">Please select a user</string>
+    <string name="addFoodBarcode">Add New Food</string>
+    <string name="foodQsBar">Would you like to add this barcode? </string>
+    <string name="fibreHint">Fibre (g)</string>
+    <string name="fatHint">Total Fat (g)</string>
+    <string name="satFatHint">Sat-Fat (g)</string>
+    <string name="carbHint">Carbs (g)</string>
+    <string name="sugarHint">Sugar (g)</string>
+    <string name="saltHint">Salt (g)</string>
+    <string name="servingHint">e.g 100 (g)</string>
+    <string name="proteinHint">Protein (g)</string>
+    <string name="productHint">Product</string>
+    <string name="brandHint">Brand</string>
+    <string name="calsHint">kCals</string>
+    <string name="welcomeMenu">Welcome to Sencerity</string>
+
+
 
 </resources>

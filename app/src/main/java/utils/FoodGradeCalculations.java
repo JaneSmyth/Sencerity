@@ -90,13 +90,6 @@ public class FoodGradeCalculations{
         proteinScore= 0.123 * proteinResult;//p
 
         saltScore=0.2;
-        Log.d("!1",": "+totalFatScore);
-        Log.d("!2",": "+satFatScore);
-        Log.d("!3",": "+saltScore);
-        Log.d("!4",": "+fibreScore);
-        Log.d("!5",": "+sugarCarbsResult);
-        Log.d("!6",": "+proteinResult);
-        Log.d("!7",": "+totalCarbsScore);
         try {
            foodScore=foodScoreStart - totalFatScore - satFatScore - saltScore - totalCarbsScore + fibreScore - sugarCarbsScore + proteinScore;
         }catch(NullPointerException e)

@@ -8,15 +8,16 @@
 
     <TextView
         android:id="@+id/dataTextView"
-        android:layout_width="276dp"
-        android:layout_height="581dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="24dp"
+        android:layout_width="281dp"
+        android:layout_height="229dp"
+        android:layout_marginTop="198dp"
+        android:layout_marginBottom="304dp"
+        android:textColor="@color/base"
         android:textSize="16sp"
         app:fontFamily="sans-serif"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -10,7 +10,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="4dp"
-        app:cardBackgroundColor="@color/flax"
+        app:cardBackgroundColor="@color/light2"
         app:contentPadding="10dp"
         app:layout_constraintBottom_toTopOf="@+id/divider"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,8 +23,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="start"
-            android:orientation="vertical"
-            android:layout_marginStart="25dp">
+            android:layout_marginStart="25dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/productView"
@@ -32,13 +32,15 @@
                 android:layout_height="wrap_content"
                 android:text="TextView"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
+                android:textColor="@color/dark2"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/servingView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text="Serving:"
+                android:textColor="@color/base"
                 android:textSize="16sp" />
 
         </LinearLayout>
@@ -46,26 +48,28 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_marginEnd="10dp"
+            android:layout_gravity="center"
             android:layout_marginStart="30dp"
-            android:layout_gravity="center">
+            android:layout_marginEnd="10dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/caloriesView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
-                android:text="TextView"
+                android:text="Calories: "
                 android:textAlignment="center"
+                android:textColor="@color/base"
                 android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/gradeView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="TextView"
+                android:text=" Food Grade:"
                 android:textAlignment="center"
+                android:textColor="@color/dAccent"
                 android:textSize="22sp" />
         </LinearLayout>
 

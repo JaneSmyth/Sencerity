@@ -3,14 +3,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:orientation="horizontal">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        app:cardBackgroundColor="@color/ivory"
+        app:cardBackgroundColor="@color/light2"
         app:contentPadding="10dp"
+        app:cardPreventCornerOverlap="true"
+        app:cardCornerRadius="10dp"
         android:layout_marginBottom="4dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -26,6 +29,7 @@
                 android:layout_marginEnd="8dp"
                 android:text="TextView"
                 android:textSize="18dp"
+                android:textColor="@color/base"
                 app:layout_constraintEnd_toStartOf="@+id/textViewDuration"
                 app:layout_constraintHorizontal_bias="0.006"
                 app:layout_constraintStart_toStartOf="parent"
@@ -39,6 +43,7 @@
                 android:layout_marginEnd="8dp"
                 android:text="TextView"
                 android:textSize="16dp"
+                android:textColor="@color/base"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textViewDuration"
                 app:layout_constraintHorizontal_bias="0.053"
@@ -53,9 +58,11 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="24dp"
                 android:layout_marginBottom="8dp"
+                android:fontFamily="sans-serif-medium"
                 android:gravity="center_vertical"
                 android:text="TextView"
                 android:textAlignment="center"
+                android:textColor="@color/base"
                 android:textSize="24sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

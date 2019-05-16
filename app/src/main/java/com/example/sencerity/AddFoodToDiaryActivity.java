@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -38,7 +39,7 @@ import static com.example.sencerity.NutritionalActivity.foodGradeCalc;
 import static com.example.sencerity.NutritionalActivity.getFoodGradeCalc;
 
 
-public class AddFoodToDiary extends AppCompatActivity {
+public class AddFoodToDiaryActivity extends AppCompatActivity {
 
     public static final String TAG = "SuccessDB";
     private TextView productTextView;
@@ -106,8 +107,6 @@ public class AddFoodToDiary extends AppCompatActivity {
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             userId = currentUser.getUid();
-        } else {
-            userId = "kM2gyYrk5MeLlLFKoZdNOViGwJI2";
         }
     }
 
@@ -156,9 +155,12 @@ public class AddFoodToDiary extends AppCompatActivity {
     }
 
     public void onClickConfirmFoodAdd(View v) {
-
+        try{
         getSelection();
-        addDataIntoDatabase();
+        addDataIntoDatabase();}
+        catch(NullPointerException npe){
+            Toast.makeText(this, "You must enter a value, if null value then enter 0.", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void getSelection() {

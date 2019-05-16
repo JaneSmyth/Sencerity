@@ -29,7 +29,9 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 
 public class FoodActivity extends AppCompatActivity {
@@ -47,6 +49,9 @@ public class FoodActivity extends AppCompatActivity {
     private int countS;
     private FoodHeaderRow foodHeader;
     private FoodAdapter adapter;
+    private Date today;
+    Intent intentOption;
+    String todayStr;
 
 
 
@@ -59,6 +64,9 @@ public class FoodActivity extends AppCompatActivity {
         countL=0;
         countD=0;
         countS=0;
+        today=new Date();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
+        todayStr = formatter.format(today);
         setUpRecyclerView();
         setUpFirebase();
         loadDataFromFirebase();
@@ -72,7 +80,6 @@ public class FoodActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BarcodeScannerActivity.class);
         startActivityForResult(intent, 0);
     }
-
     @Override
     protected void onActivityResult(int requestCode,int resultCode, Intent data){
         if(requestCode == 0){
@@ -82,10 +89,9 @@ public class FoodActivity extends AppCompatActivity {
                     Barcode barcode = data.getParcelableExtra("barcode");
 
                     barcodeValue = barcode.displayValue;
+                    checkIfInDb(barcodeValue);
                    // barcodeTextView.setText("Barcode value: " +barcode.displayValue);
 
-                    Intent nutritionalActivity = new Intent(FoodActivity.this, NutritionalActivity.class);
-                    FoodActivity.this.startActivity(nutritionalActivity);
 
                 } else{
                     //add barcode info
@@ -97,6 +103,24 @@ public class FoodActivity extends AppCompatActivity {
         }
     }
 
+    public void checkIfInDb(String barcode){
+        db.collection("products")
+                .whereEqualTo("barcodeNumber",barcode)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.getResult().isEmpty() || task.getResult()==null)
+                        {
+                            intentOption = new Intent(FoodActivity.this, AddNewBarcodeActivity.class);
+                            startActivity(intentOption);
+                        }
+                        else{
+                            intentOption = new Intent(FoodActivity.this, NutritionalActivity.class);
+                        }   startActivity(intentOption);
+                    }
+                });
+    }
 
 
     private void setUpFirebase() {
@@ -104,8 +128,6 @@ public class FoodActivity extends AppCompatActivity {
         currentUser = FirebaseAuth.getInstance().getCurrentUser();
         if (currentUser != null) {
             userId = currentUser.getUid();
-        } else {
-            userId = "kM2gyYrk5MeLlLFKoZdNOViGwJI2";
         }
     }
 
@@ -117,6 +139,7 @@ public class FoodActivity extends AppCompatActivity {
 
     private void loadDataFromFirebase(){
         db.collection("users").document(userId).collection("nutrition")
+                .whereEqualTo("date",todayStr)
                 .orderBy("mealTypeValue", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

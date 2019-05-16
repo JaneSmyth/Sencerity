@@ -13,6 +13,7 @@ public class FoodProductInfo {
     private Double protein;
     private Double salt;
     private Double fibre;
+    private String barcode,product,brand;
     //private Double gradeOverall; i.e. per 100g etc
 
 
@@ -31,6 +32,29 @@ public class FoodProductInfo {
 ///////////////////////////////
 
 
+    public String getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(String barcode) {
+        this.barcode = barcode;
+    }
+
+    public String getProduct() {
+        return product;
+    }
+
+    public void setProduct(String product) {
+        this.product = product;
+    }
+
+    public String getBrand() {
+        return brand;
+    }
+
+    public void setBrand(String brand) {
+        this.brand = brand;
+    }
 
     ////////////////////////////////
     public String getCalories() {
