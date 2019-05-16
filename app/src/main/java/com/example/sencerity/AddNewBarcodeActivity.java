@@ -144,6 +144,11 @@ public void changeIntent(){
            {
                Toast.makeText(this, "Please ensure all fields have values. Enter 0 if you are unsure.", Toast.LENGTH_LONG).show();
            }
+           catch (NumberFormatException nbe)
+           {
+               Toast.makeText(this, "Please ensure all fields have values. Enter 0 if you are unsure.", Toast.LENGTH_LONG).show();
+
+           }
 
     }
 }

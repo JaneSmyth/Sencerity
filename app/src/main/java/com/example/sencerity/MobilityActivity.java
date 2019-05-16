@@ -35,7 +35,7 @@ public class MobilityActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dressing);
+        setContentView(R.layout.activity_mobility);
         displayData = findViewById(R.id.dataTextView);
 
         db = FirebaseFirestore.getInstance();

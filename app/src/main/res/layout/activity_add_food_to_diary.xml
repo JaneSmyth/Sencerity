@@ -51,17 +51,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:layout_marginStart="112dp"
-        android:layout_marginTop="37dp"
-        android:layout_marginEnd="116dp"
-        android:layout_marginBottom="60dp"
+        android:layout_marginTop="59dp"
         android:background="@color/fui_transparent"
         android:fontFamily="sans-serif-medium"
         android:text="Please enter the portion you would like to add to your Food Diary"
         android:textAlignment="center"
         android:textColor="@color/base"
         android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/titleLinearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardViewHeader" />
@@ -70,13 +66,14 @@
         android:id="@+id/titleLinearLayout"
         android:layout_width="wrap_content"
         android:layout_height="250dp"
-        android:layout_marginBottom="140dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginBottom="60dp"
         android:gravity="left"
         android:orientation="vertical"
-        app:layout_constraintBottom_toTopOf="@id/addFoodToDiaryBtn"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toLeftOf="@id/textLinearLayout"
-        app:layout_constraintVertical_weight="1">
+        app:layout_constraintBottom_toTopOf="@+id/addFoodToDiaryBtn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView14">
 
         <TextView
             android:id="@+id/calsOfEnteredServTextView"
@@ -115,15 +112,16 @@
     <LinearLayout
         android:id="@+id/textLinearLayout"
         android:layout_width="137dp"
-        android:layout_height="234dp"
-        android:layout_marginTop="48dp"
-        android:layout_marginEnd="28dp"
+        android:layout_height="200dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginTop="104dp"
+        android:layout_marginEnd="38dp"
+        android:layout_marginBottom="68dp"
         android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/addFoodToDiaryBtn"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toRightOf="@id/titleLinearLayout"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView14"
-        app:layout_constraintVertical_weight="1">
+        app:layout_constraintStart_toEndOf="@+id/titleLinearLayout"
+        app:layout_constraintTop_toBottomOf="@+id/textView14">
 
         <TextView
             android:id="@+id/calculatedCalsPerServ"
@@ -131,7 +129,8 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:fontFamily="sans-serif-light"
-            android:textAlignment="textStart" />
+            android:text="0"
+            android:textAlignment="center" />
 
         <EditText
             android:id="@+id/servInputEditTextView"

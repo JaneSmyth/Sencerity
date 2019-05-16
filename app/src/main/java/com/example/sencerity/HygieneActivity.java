@@ -33,7 +33,7 @@ public class HygieneActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dressing);
+        setContentView(R.layout.activity_hygiene);
         displayData = findViewById(R.id.dataTextView);
 
         db = FirebaseFirestore.getInstance();
