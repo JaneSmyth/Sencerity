@@ -155,8 +155,9 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
     }
 
     public void onClickConfirmFoodAdd(View v) {
-        try{
+
         getSelection();
+        try{
         addDataIntoDatabase();}
         catch(NullPointerException npe){
             Toast.makeText(this, "You must enter a value, if null value then enter 0.", Toast.LENGTH_LONG).show();
@@ -209,6 +210,7 @@ public class AddFoodToDiaryActivity extends AppCompatActivity {
         foodItem.put("mealTypeValue", mealTypeValue);
         foodItem.put("date", today);
         foodItem.put("foodGrade",foodGrade);
+        foodItem.put("patientId",MainMenuActivity.patientSelectId);
 
         db.collection("users").document(userId).collection("nutrition")
                 .add(foodItem)

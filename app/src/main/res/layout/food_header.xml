@@ -15,5 +15,5 @@
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="@color/light2"
-        android:textSize="20sp" />
+        android:textSize="16sp" />
 </LinearLayout>

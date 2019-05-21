@@ -104,6 +104,7 @@ public class AddNewBarcodeActivity extends AppCompatActivity {
         foodEntry.put("servingInGrams",servSize);
         foodEntry.put("sugarCarbsPerServ", sugar);
         foodEntry.put("totalFatPerServ", fat);
+
         addDataToFireBase();
 
     }

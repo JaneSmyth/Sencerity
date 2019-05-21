@@ -4,16 +4,23 @@ package com.example.sencerity;
 import android.Manifest;
 import android.content.Intent;
 
+import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 public class MainMenuActivity extends AppCompatActivity {
     private static final int MY_PERMISSION_REQUEST_CAMERA = 200;
@@ -24,6 +31,7 @@ public class MainMenuActivity extends AppCompatActivity {
     private String mUserId;
     private Button logOutBtn;
     public static String patientSelectName;
+    public static String patientSelectId;
 
 
 
@@ -37,6 +45,7 @@ public class MainMenuActivity extends AppCompatActivity {
         mFirestore=FirebaseFirestore.getInstance();
         mUserId = mAuth.getCurrentUser().getUid();
         patientSelectName=getIntent().getStringExtra("pName");
+        getPatientInfo();
 
     }
 
@@ -62,7 +71,32 @@ public class MainMenuActivity extends AppCompatActivity {
                 MY_PERMISSION_REQUEST_CAMERA);
     }
 
+    public void getPatientInfo(){
 
+        mFirestore.collection("users").document(mUserId).collection("patient")
+                .whereEqualTo("name",patientSelectName)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if(task.isSuccessful()){
+                            for(QueryDocumentSnapshot doc: task.getResult())
+                            {
+                                patientSelectId = doc.getString("patientId");
+                            }
+                        }
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.d("patient firebase Error:",""+ e);
+                    }
+                });
+
+
+
+    }
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.foodButton) {

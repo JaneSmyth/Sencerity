@@ -54,6 +54,7 @@ public class MobilityActivity extends AppCompatActivity {
     public void getDataFromMobilityDocs(){
 
         db.collection("users").document(userId).collection("mobility")
+                .whereEqualTo("patientId", MainMenuActivity.patientSelectId)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -61,12 +62,10 @@ public class MobilityActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                displayData.append(DATETIME + " : " +document.get("dateTime").toString());
-                                displayData.append("\n");
-                                displayData.append(SENSOR + " : "+ document.get("sensor").toString());
-                                displayData.append("\n");
-                                displayData.append(PRESSURE + " : " +document.get("sensorPressure").toString());
+                                displayData.append(DATETIME + " : " +document.getTimestamp("dateTime").toDate().toString());
                                 displayData.append("\n\n");
+                                displayData.append(SENSOR + " : "+ document.getString("sensor"));
+                                displayData.append("\n\n\n");
 
                                 Log.d(TAG, document.getId() + " => " + document.getData());                            }
                         } else{

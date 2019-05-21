@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.Timestamp;
 import com.google.firebase.auth.FirebaseAuth;
@@ -36,6 +37,7 @@ import javax.annotation.Nullable;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import models.DressedModel;
+import models.PatientInfo;
 import utils.DateAndTimeConversions;
 
 public class DressingActivity extends AppCompatActivity {
@@ -79,6 +81,7 @@ public class DressingActivity extends AppCompatActivity {
     private String washDateString;
     TextView washReminderBtn;
     TextView dressReminderBtn;
+    String msgReceiverUserName;
 
 
 
@@ -105,36 +108,11 @@ public class DressingActivity extends AppCompatActivity {
         yesterday = cal.getTime();
         cal.add(Calendar.DATE,+1);
         tomorrow =cal.getTime();
-        patientId="1"; //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-        setPatientName();
+        patientName = MainMenuActivity.patientSelectName;
+        patientId = MainMenuActivity.patientSelectId;
+        getDressingData();
+        getWashingData();
 
-
-
-
-    }
-
-    public void setPatientName(){
-        db.collection("users").document(userId).collection("patient")
-                .whereEqualTo("patientId",patientId)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-
-                        if (task.isSuccessful()) {
-                            for (@NonNull QueryDocumentSnapshot document : task.getResult()) {
-                                patientName = document.getString("name");
-
-                            }
-                        }
-                        else {
-
-                        }
-                        getDressingData();
-                        getWashingData();
-
-                    }
-                });
     }
 
 
@@ -143,6 +121,8 @@ public class DressingActivity extends AppCompatActivity {
         db.collection("users").document(userId).collection("dressing")
                 .whereGreaterThan("dateTime",yesterday)
                 .whereLessThan("dateTime",tomorrow)
+                .whereEqualTo("sensor","wardrobe")
+                .whereEqualTo("patientId", MainMenuActivity.patientSelectId)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
 
                     @Override
@@ -161,9 +141,7 @@ public class DressingActivity extends AppCompatActivity {
                         }
 
                             for (DocumentChange dc : snapshots.getDocumentChanges()) {
-                                Log.d("!3:", patientName);
                                 dateTime = dc.getDocument().getTimestamp("dateTime").toDate();
-                                //dateTimeConvert = new DateAndTimeConversions(dateTime);
                                 timesListDress.add(dateTime);
                                 dressSnapshotResult();
 
@@ -190,10 +168,6 @@ public class DressingActivity extends AppCompatActivity {
         {
             displayMessage = String.format(res.getString(R.string.dressingResult), patientName, timeStringDressFirst);
         }
-        else if(timesListDress.isEmpty())
-        {
-
-        }
         else{
             dDateTimeConvert = new DateAndTimeConversions(timesListDress.get(timesListDress.size()-1));
             timeStringDressRecent= dDateTimeConvert.getHourMinuteFormat();
@@ -206,11 +180,9 @@ public class DressingActivity extends AppCompatActivity {
 
     public void getWashingData() {
 
-        db.collection("dressing")
-                .whereEqualTo("userId", "123")
-                .whereEqualTo("patientId", "1")
+        db.collection("users").document(userId).collection("dressing")
                 .whereEqualTo("sensor","washingMachine")
-
+                .whereEqualTo("patientId", MainMenuActivity.patientSelectId)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
 
                     @Override

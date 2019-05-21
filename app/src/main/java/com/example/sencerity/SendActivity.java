@@ -60,37 +60,12 @@ public class SendActivity extends AppCompatActivity implements View.OnClickListe
         mSubmitBtn.setOnClickListener(this);
         msgReceiverUserName = MainMenuActivity.patientSelectName;
         Log.d("msgReceiverName",msgReceiverUserName);
-        getPatientInfo();
+        patientId=MainMenuActivity.patientSelectId;
+        getDocId();
 
 
     }
-    public void getPatientInfo(){
 
-        mFirestore.collection("users").document(userId).collection("patient")
-                .whereEqualTo("name",msgReceiverUserName)
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if(task.isSuccessful()){
-                        for(QueryDocumentSnapshot doc: task.getResult())
-                        {
-                            patientId = doc.getString("patientId");
-                        }
-                            getDocId();
-                        }
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.d("patient firebase Error:",""+ e);
-                    }
-                });
-
-
-
-    }
 
     public void getDocId(){
         mFirestore.collection("users")

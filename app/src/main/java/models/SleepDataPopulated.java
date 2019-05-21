@@ -5,12 +5,14 @@ public class SleepDataPopulated {
     String dateOfSleep;
     String sleepTimeToWakeTime;
     String dur;
+    long durInSeconds; //for PieChart
 
-    public SleepDataPopulated(String durationString, String dateOfSleep, String sleepTimeToWakeTime,String dur) {
+    public SleepDataPopulated(String durationString, String dateOfSleep, String sleepTimeToWakeTime,String dur, long durInSeconds) {
         this.durationString = durationString;
         this.dateOfSleep = dateOfSleep;
         this.sleepTimeToWakeTime = sleepTimeToWakeTime;
         this.dur=dur;
+        this.durInSeconds = durInSeconds;
     }
 
 
@@ -43,5 +45,8 @@ public class SleepDataPopulated {
 
     public void setSleepTimeToWakeTime(String sleepTimeToWakeTime) {
         this.sleepTimeToWakeTime = sleepTimeToWakeTime;
+    }
+    public long durationSeconds(){
+        return durInSeconds;
     }
 }

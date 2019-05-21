@@ -101,21 +101,21 @@ public class FoodGradeCalculations{
     public String getFoodGrade(){
        if(foodScore >1.5)
            foodGrade= "A+";
-       else if(foodScore > 1)
+       else if(foodScore > 1 && foodScore< 1.5)
            foodGrade="A-";
-       else if(foodScore > 0.5)
+       else if(foodScore > 0.5 && foodScore <1)
            foodGrade="B+";
-       else if(foodScore > 0)
+       else if(foodScore > 0 && foodScore < 0.5)
            foodGrade="B";
-       else if(foodScore > -0.5)
+       else if(foodScore > -0.5 && foodScore < 0)
            foodGrade="B-";
-       else if(foodScore > -1)
+       else if(foodScore > -1 && foodScore < -0.5)
            foodGrade="C+";
-       else if(foodScore > -1.5)
+       else if(foodScore > -1.5 && foodScore < -1)
            foodGrade="C";
-       else if(foodScore > -2)
+       else if(foodScore > -2 && foodScore < -1.5)
            foodGrade="C-";
-       else if(foodScore > -2.5)
+       else if(foodScore > -2.5 && foodScore < -2)
            foodGrade="D+";
        else if(foodScore < -2.5)
            foodGrade="D";

@@ -8,14 +8,12 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView2"
-        android:layout_width="395dp"
+        android:layout_width="385dp"
         android:layout_height="120dp"
-        android:layout_marginStart="10dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="64dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="8dp"
         app:cardBackgroundColor="@color/light2"
-        app:layout_constraintBottom_toTopOf="@+id/cardViewWash"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,16 +32,15 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardViewWash"
-        android:layout_width="395dp"
-        android:layout_height="114dp"
-        android:layout_marginStart="10dp"
+        android:layout_width="385dp"
+        android:layout_height="115dp"
+        android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginEnd="8dp"
         app:cardBackgroundColor="@color/light2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView2">
+        app:layout_constraintTop_toBottomOf="@+id/divider4">
 
         <TextView
             android:id="@+id/washingTextView"
@@ -59,11 +56,11 @@
     <View
         android:id="@+id/divider2"
         android:layout_width="395dp"
-        android:layout_height="3dp"
+        android:layout_height="1dp"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@color/myGreyPink"
+        android:background="?android:attr/listDivider"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,5 +108,19 @@
             android:textSize="16sp"
             android:textStyle="bold" />
     </androidx.cardview.widget.CardView>
+
+    <View
+        android:id="@+id/divider4"
+        android:layout_width="395dp"
+        android:layout_height="1dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="14dp"
+        android:background="?android:attr/listDivider"
+        app:layout_constraintBottom_toTopOf="@+id/cardViewWash"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView2" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

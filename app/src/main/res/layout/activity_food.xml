@@ -1,75 +1,70 @@
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".FoodActivity"
+    android:padding="16dp">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/foodRecyclerView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp">
+        android:layout_height="363dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
 
+    <Button
+        android:id="@+id/barcodeScanButton"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="81dp"
+        android:layout_marginBottom="100dp"
+        android:background="@color/dark2"
+        android:onClick="scanBarcode"
+        android:text="Scan Barcode To Add Food"
+        android:textColor="@color/light2"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/mainMenuButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/foodRecyclerView" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/foodRecyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="397dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="25dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginBottom="26dp"
-            app:layout_constraintBottom_toTopOf="@+id/barcodeScanButton"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        android:text="Todays Food Diary"
+        android:textColor="@color/base"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
-            android:id="@+id/barcodeScanButton"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_margin="40dp"
-            android:layout_marginTop="51dp"
-            android:layout_marginBottom="2dp"
-            android:background="@color/dark2"
-            android:onClick="scanBarcode"
-            android:text="Scan Barcode To Add Food"
-            android:textColor="@color/light2"
-            app:layout_constraintBottom_toTopOf="@+id/button"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.496"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/foodRecyclerView" />
+    <Button
+        android:id="@+id/mainMenuButton"
+        style="@style/Base.TextAppearance.AppCompat.Button"
+        android:layout_width="wrap_content"
+        android:layout_height="51dp"
+        android:layout_marginTop="82dp"
+        android:layout_marginEnd="5dp"
+        android:layout_marginBottom="99dp"
+        android:background="@color/dark2"
+        android:onClick="returnToMenu"
+        android:text="Main Menu"
+        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+        android:textColor="@android:color/white"
+        android:textSize="13sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/barcodeScanButton"
+        app:layout_constraintTop_toBottomOf="@+id/foodRecyclerView" />
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:text="Todays Food Diary"
-            android:textColor="@color/base"
-            android:textSize="18sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <Button
-            android:id="@+id/button"
-            style="@style/Base.TextAppearance.AppCompat.Button"
-            android:layout_width="250dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="75dp"
-            android:layout_marginEnd="75dp"
-            android:layout_marginBottom="32dp"
-            android:background="@color/dark2"
-            android:text="Main Menu"
-            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-            android:textColor="@android:color/white"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -30,13 +30,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif-light"
-                android:textAppearance="@style/TextAppearance.AppCompat.Large" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Large"
+                android:textSize="20sp" />
 
             <TextView
                 android:id="@+id/brandTextView2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
+                android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                android:textSize="18sp" />
 
             <TextView
                 android:id="@+id/barcodeNumTextView2"
@@ -81,7 +83,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:fontFamily="sans-serif-light"
-
+            android:gravity="center"
             android:text="@string/caloriesPerServingEntered"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -92,7 +94,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:fontFamily="sans-serif-light"
-
+            android:gravity="center"
             android:text="@string/servingSizeByUser"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -103,7 +105,7 @@
             android:layout_height="0dp"
             android:layout_weight="1"
             android:fontFamily="sans-serif-light"
-
+            android:gravity="center"
             android:text="@string/mealType"
             android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.AppCompat.Medium" />
@@ -120,8 +122,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toTopOf="@+id/addFoodToDiaryBtn"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/titleLinearLayout"
-        app:layout_constraintTop_toBottomOf="@+id/textView14">
+        app:layout_constraintTop_toBottomOf="@+id/textView14"
+        app:layout_constraintVertical_bias="0.515">
 
         <TextView
             android:id="@+id/calculatedCalsPerServ"
@@ -130,7 +134,8 @@
             android:layout_weight="1"
             android:fontFamily="sans-serif-light"
             android:text="0"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:gravity="top"/>
 
         <EditText
             android:id="@+id/servInputEditTextView"
@@ -140,7 +145,7 @@
             android:fontFamily="sans-serif-light"
             android:hint="@string/servHint"
             android:importantForAutofill="no"
-            android:inputType="number"
+            android:inputType="number|numberDecimal"
             android:textAlignment="center" />
 
         <Spinner
@@ -151,6 +156,7 @@
             android:layout_weight="1"
             android:entries="@array/mealTimeArray"
             android:gravity="center"
+            android:layout_marginTop="5dp"
             android:spinnerMode="dropdown"
             android:textAlignment="center" />
     </LinearLayout>

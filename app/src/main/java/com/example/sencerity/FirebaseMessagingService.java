@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Build;
+import android.os.Bundle;
 
 import com.firebase.ui.auth.ui.phone.SpacedEditText;
 import com.google.firebase.messaging.RemoteMessage;
@@ -22,12 +23,13 @@ import androidx.core.app.NotificationCompat;
 
 public class FirebaseMessagingService extends com.google.firebase.messaging.FirebaseMessagingService {
 
+    public String dataMessage;
+    public String dataFrom;
+    //public void onNewToken(String t) {
+        //super.onNewToken(t);
 
-    public void onNewToken(String t) {
-        super.onNewToken(t);
 
-
-    }
+    //}
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -36,9 +38,8 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
         String messageTitle= remoteMessage.getNotification().getTitle();
         String messageBody = remoteMessage.getNotification().getBody();
 
-        String dataMessage = remoteMessage.getData().get("message");
-        String dataFrom = remoteMessage.getData().get("from");
-
+         dataMessage = remoteMessage.getData().get("message");
+         dataFrom = remoteMessage.getData().get("from_user");
 
         Uri defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 
@@ -92,6 +93,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 notificationManager.createNotificationChannel(channel);
             }
         }
+
     }
 
 

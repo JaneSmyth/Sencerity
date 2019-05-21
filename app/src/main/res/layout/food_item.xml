@@ -32,7 +32,7 @@
                 android:layout_height="wrap_content"
                 android:textAppearance="@style/TextAppearance.AppCompat.Headline"
                 android:textColor="@color/dark2"
-                android:textSize="18sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/servingView"
@@ -40,7 +40,7 @@
                 android:layout_height="wrap_content"
                 android:text="(g) "
                 android:textColor="@color/base"
-                android:textSize="16sp" />
+                android:textSize="12sp" />
 
             <TextView
                 android:id="@+id/caloriesView"
@@ -48,9 +48,8 @@
                 android:layout_height="wrap_content"
                 android:gravity="center_vertical"
                 android:text="Calories "
-                android:textAlignment="viewStart"
                 android:textColor="@color/base"
-                android:textSize="18sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/gradeView"
@@ -59,7 +58,7 @@
                 android:text="Grade "
                 android:textAlignment="center"
                 android:textColor="@color/dAccent"
-                android:textSize="22sp" />
+                android:textSize="16sp" />
 
         </LinearLayout>
 

@@ -52,6 +52,7 @@ public class HygieneActivity extends AppCompatActivity {
     public void getDataFromHygieneDocs(){
 
         db.collection("users").document(userId).collection("hygiene")
+                .whereEqualTo("patientId", MainMenuActivity.patientSelectId)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @Override
@@ -59,12 +60,11 @@ public class HygieneActivity extends AppCompatActivity {
 
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
-                                displayData.append(DATETIME + " : " +document.get("dateTime").toString());
-                                displayData.append("\n");
-                                displayData.append(SENSOR + " : "+ document.get("sensor").toString());
+                                displayData.append(DATETIME + " : " +document.getTimestamp("dateTime").toDate().toString());
                                 displayData.append("\n\n");
-
-                                Log.d(TAG, document.getId() + " => " + document.getData());                            }
+                                displayData.append(SENSOR + " : "+ document.getString("sensor"));
+                                displayData.append("\n\n\n");
+                            }
                         } else{
                             displayData.append("Error getting documents");}
                     }

@@ -8,14 +8,14 @@
 
     <TextView
         android:id="@+id/successOrFailTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:fontFamily="sans-serif-medium"
         android:textAppearance="@android:style/TextAppearance.Theme.Dialog"
         android:textColor="@color/base"
-        android:textSize="22sp"
+        android:textSize="20sp"
         app:layout_constraintBottom_toTopOf="@+id/returnToFoodPageBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -38,6 +39,7 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
     FirebaseFirestore mFirestore;
     private String currentId;
     private String mToken;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +51,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
 
         username = findViewById(R.id.usernameTextView);
         password = findViewById(R.id.passwordTextView);
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.INVISIBLE);
 
         findViewById(R.id.loginButton).setOnClickListener(this);
     }
@@ -99,6 +103,8 @@ public class SignInActivity extends AppCompatActivity implements View.OnClickLis
         int i= v.getId();
         if(i == R.id.loginButton)
         {
+            progressBar.setVisibility(View.VISIBLE);
+
             signInWithEmailAndPassword(username.getText().toString(), password.getText().toString());
         }
     }

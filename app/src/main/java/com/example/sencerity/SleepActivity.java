@@ -78,12 +78,11 @@ public class SleepActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sleep);
         index = 0;
+        i=0;
         recyclerViewItems = new ArrayList<>();
         setUpRecyclerView();
         setUpFirebase();
         loadDataFromFirebase();
-        i = 0;
-
 
     }
 
@@ -129,13 +128,15 @@ public class SleepActivity extends AppCompatActivity {
         for (index = 0; index < sleepDateTimeData.size(); index++) {
             sleepDuration.getEligibleDates(index);
         }
+        finalList = sleepDuration.returnedData();
+        drawPie();
         displayData();
     }
 
     private void displayData() {
 
-        finalList = sleepDuration.returnedData();
-        drawPie();
+//        finalList = sleepDuration.returnedData();
+  //      drawPie();
         int j = finalList.size() - 1;
 
         while (j >= 0) {
@@ -171,17 +172,10 @@ public class SleepActivity extends AppCompatActivity {
     private void drawPie() {
 
 
-        String duration = finalList.get(finalList.size()-1).getDur();
-        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm");
-        Calendar cal =Calendar.getInstance();
-        try {
-            cal.setTime(formatter.parse(duration));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        long timeElap = Calendar.getInstance().getTimeInMillis();
+        long timeElap = finalList.get(finalList.size()-1).durationSeconds();
 
-        totalTime = (float)86400000L;//86,400 milli in 24hr
+
+        totalTime = (float)86400L;//86,400 seconds in 24hr
         timeLeft = totalTime- timeElap;
         pieChart = findViewById(R.id.sleepPieChart);
         ArrayList<PieEntry> yvalues = new ArrayList<>();
@@ -192,12 +186,15 @@ public class SleepActivity extends AppCompatActivity {
 
         PieDataSet pDataSet = new PieDataSet(yvalues, "Time asleep");
         PieData pData = new PieData(pDataSet);
-        pDataSet.setColors(ColorTemplate.JOYFUL_COLORS);
+        pDataSet.setColors(ColorTemplate.PASTEL_COLORS);
         // pData.setValueFormatter(new DefaultValueFormatter(0));
         pieChart.setUsePercentValues(true);
+        pieChart.setDrawEntryLabels(true);
+        pieChart.setEntryLabelTextSize(16f);
         pieChart.setDrawHoleEnabled(true);
         pieChart.setData(pData);
         pieChart.getDescription().setText("% of time asleep/awake in 24 hours");
+        pieChart.invalidate();
 
         // data.setValueFormatter(new DefaultValueFormatter(0));
 

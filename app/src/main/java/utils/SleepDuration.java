@@ -26,6 +26,7 @@ public class SleepDuration extends RecyclerViewItem {
     Date currentDateTime;
     Date prevDateTime;
     String durHrMin;
+    long durationLong;
 
     private String durationAsleepString;
 
@@ -66,7 +67,7 @@ public class SleepDuration extends RecyclerViewItem {
         LocalDateTime ldtPrev = LocalDateTime.parse(dateList.get(i-1).getDateTime(),formatter);
         LocalDateTime ldtCurrent= LocalDateTime.parse(dateList.get(i).getDateTime(),formatter);
         Duration duration = Duration.between(ldtPrev,ldtCurrent);
-        Long durationLong =duration.getSeconds();
+        durationLong =duration.getSeconds();
         Long hours = durationLong / 3600;
         Long minutes = (durationLong % 3600) / 60;
         durHrMin = hours+":"+minutes;
@@ -94,11 +95,13 @@ public class SleepDuration extends RecyclerViewItem {
             SimpleDateFormat format = new SimpleDateFormat("dd MMM");
             String dateOfSleep= format.format(prevDateTime);
 
-            sleepDataPopulated = new SleepDataPopulated(durationAsleepString,dateOfSleep,sleepTimeAndWakeTime,durHrMin);
+            sleepDataPopulated = new SleepDataPopulated(durationAsleepString,dateOfSleep,sleepTimeAndWakeTime,durHrMin,durationLong);
 
             allDataList.add(sleepDataPopulated);
 
+
         }
+
 
         public List<SleepDataPopulated> returnedData(){
             return allDataList;

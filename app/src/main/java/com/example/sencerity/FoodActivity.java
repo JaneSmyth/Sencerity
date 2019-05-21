@@ -80,6 +80,10 @@ public class FoodActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BarcodeScannerActivity.class);
         startActivityForResult(intent, 0);
     }
+    public void returnToMenu(View v){
+        Intent intent = new Intent(this, MainMenuActivity.class);
+        startActivity(intent);
+    }
     @Override
     protected void onActivityResult(int requestCode,int resultCode, Intent data){
         if(requestCode == 0){
@@ -140,6 +144,7 @@ public class FoodActivity extends AppCompatActivity {
     private void loadDataFromFirebase(){
         db.collection("users").document(userId).collection("nutrition")
                 .whereEqualTo("date",todayStr)
+                .whereEqualTo("patientId", MainMenuActivity.patientSelectId)
                 .orderBy("mealTypeValue", Query.Direction.ASCENDING)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {

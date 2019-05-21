@@ -2,6 +2,7 @@ package com.example.sencerity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -20,11 +21,10 @@ public class NotificationActivity extends AppCompatActivity {
         reply=findViewById(R.id.replyBtn);
 
 
-
         String dataMessage = getIntent().getStringExtra("dataMessage");
         String dataFrom  = getIntent().getStringExtra("dataFrom");
 
-        mNotifData.setText("Message:\n\n "+dataMessage);
+        mNotifData.setText("Message From: " + dataFrom+ "\n\n"+ "Message: "+ dataMessage);
 
     }
 
