@@ -25,11 +25,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
 
     public String dataMessage;
     public String dataFrom;
-    //public void onNewToken(String t) {
-        //super.onNewToken(t);
-
-
-    //}
+   
 
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -54,7 +50,7 @@ public class FirebaseMessagingService extends com.google.firebase.messaging.Fire
                 .setSound(defaultSoundUri)
                 .setPriority(NotificationCompat.PRIORITY_HIGH);
 
-        //  .setColor(0xffff7700)
+        
         Intent resultIntent = new Intent(click_action);
         resultIntent.putExtra("dataMessage", dataMessage);
         resultIntent.putExtra("dataFrom", dataFrom);
